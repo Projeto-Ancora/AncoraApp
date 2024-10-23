@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AncoraSplashScreen" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/oceanblue</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo</item>
+    </style>
+
+    <style name="Theme.Ancora" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>
