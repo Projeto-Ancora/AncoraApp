@@ -5,12 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.ancora.Telas.GameScree
 import com.example.ancora.ui.theme.AncoraTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AncoraTheme {
                 Scaffold { innerPadding ->
-                    Greeting(modifier = Modifier.padding(innerPadding))
+                    GameScree(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -30,10 +32,17 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
-    Text(
-        text = "Doom!",
-        modifier = modifier
-    )
+    Button(
+        onClick = { onClick() }
+    ) {
+        Text(
+            text = "P.tela"
+        )
+    }
+}
+
+fun onClick(){
+
 }
 
 @Preview(showBackground = true)

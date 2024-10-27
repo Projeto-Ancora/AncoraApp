@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="oceanblue">#2DA2DB</color>
+    <color name="corbolha1">#DEFDFF</color>
+    <color name="corbolha2">#3DF2FF</color>
 </resources>
