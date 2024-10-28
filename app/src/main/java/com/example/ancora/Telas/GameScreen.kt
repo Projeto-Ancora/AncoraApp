@@ -36,10 +36,8 @@ fun GameScree(modifier: Modifier = Modifier) {
             .padding(start = 60.dp)
     ) {
         ClickableText(
-            text = AnnotatedString("2X2"),
-            onClick = { boolCLick ->
-                Log.d("ClickableText", "$boolCLick -th character is clicked.")
-            },
+            text = AnnotatedString("1+1"),
+            onClick = { Log.d("Pergunta", "1+1");getSum(2) },
             modifier = modifier
                 .drawBehind {
                     drawCircle(
@@ -53,7 +51,7 @@ fun GameScree(modifier: Modifier = Modifier) {
 
         ClickableText(
             text = AnnotatedString("2X2"),
-            onClick = { getMult(2 * 2) },
+            onClick = { Log.d("Pergunta", "2*2"); getMult(4) },
             modifier = modifier
                 .drawBehind {
                     drawCircle(
@@ -66,8 +64,8 @@ fun GameScree(modifier: Modifier = Modifier) {
         Spacer(modifier.size(20.dp))
 
         ClickableText(
-            text = AnnotatedString("2X2"),
-            onClick = {},
+            text = AnnotatedString("10/2"),
+            onClick = { Log.d("Pergunta", "10/2"); getDiv(5) },
             modifier = modifier
                 .drawBehind {
                     drawCircle(
@@ -97,48 +95,103 @@ fun GameScree(modifier: Modifier = Modifier) {
                 modifier
                     .padding(top = 56.dp)
                     .padding(start = 69.dp)
-                    .clickable { compararResultado() },
+                    .clickable { compararResultado(4) },
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
             )
         }
 
-        Image(
-            painter = painterResource(R.drawable.peixe),
-            contentDescription = "Peixe",
-            modifier
-                .size(130.dp)
-        )
+        Box {
+            Image(
+                painter = painterResource(R.drawable.peixe),
+                contentDescription = "Peixe",
+                modifier
+                    .size(130.dp)
+            )
+            Text(
+                text = "5",
+                modifier
+                    .padding(top = 56.dp)
+                    .padding(start = 69.dp)
+                    .clickable { compararResultado(5) },
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp
+            )
+        }
 
-        Image(
-            painter = painterResource(R.drawable.peixe),
-            contentDescription = "Peixe",
-            modifier
-                .size(130.dp)
-        )
+        Box {
+            Image(
+                painter = painterResource(R.drawable.peixe),
+                contentDescription = "Peixe",
+                modifier
+                    .size(130.dp)
+            )
+            Text(
+                text = "2",
+                modifier
+                    .padding(top = 56.dp)
+                    .padding(start = 69.dp)
+                    .clickable { compararResultado(2) },
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp
+            )
+        }
     }
 }
 
 val caseMult = mutableListOf<Int>();
+val caseSum = mutableListOf<Int>();
+val caseDiv = mutableListOf<Int>();
 
 private fun getMult(num: Int) {
-    caseMult.add(num)
+    caseMult.add(num);
 }
+
+private fun getSum(num: Int) {
+    caseSum.add(num);
+}
+
+private fun getDiv(num: Int) {
+    caseDiv.add(num);
+}
+
 
 private fun setMult(): List<Int> {
     return caseMult.toList();
 }
 
-private fun compararResultado() {
-    when {
-        setMult().contains(4) -> {
-            Log.d("Acertou", "Acertou")
-        }
+private fun setSum(): List<Int> {
+    return caseSum.toList();
+}
 
+private fun setDiv(): List<Int> {
+    return caseDiv.toList();
+}
+
+
+private fun compararResultado(resposta: Int) {
+
+    val mutiplicadores = setMult();
+    val somadores = setSum();
+    val divisores = setDiv();
+
+    val acerto = mutiplicadores.contains(resposta) || somadores.contains(resposta) || divisores.contains(resposta)
+
+    when{
+        acerto -> {
+            Log.d("Acertou", "Acertou");
+        }
         else -> {
-            Log.d("Errou", "Errou")
+            Log.d("Errou", "Errou");
         }
     }
+    resetCases();
+}
+
+private fun resetCases() {
+    caseMult.clear();
+    caseSum.clear();
+    caseDiv.clear();
 }
 
 @Preview
