@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.ancora.Telas.GameScree
+import com.example.ancora.Telas.ShopLayout
 import com.example.ancora.ui.theme.AncoraTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             AncoraTheme {
                 Scaffold { innerPadding ->
-                    GameScree(modifier = Modifier.padding(innerPadding))
+                    ShopLayout(modifier = Modifier.padding(innerPadding))
+                    // GameScree(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
