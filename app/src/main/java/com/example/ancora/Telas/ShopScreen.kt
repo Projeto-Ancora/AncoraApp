@@ -172,7 +172,7 @@ fun BackgroundShop(){
 }
 @Preview(showBackground=true, widthDp = 360, heightDp = 800)
 @Composable
-fun previewBackground(){
+fun PreviewBackground(){
     BackgroundShop()
     TopLayout()
     SereiaBackground()
