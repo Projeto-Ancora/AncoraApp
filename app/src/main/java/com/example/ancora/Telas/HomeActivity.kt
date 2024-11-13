@@ -156,7 +156,7 @@ fun VisualizadorDeMoedas(modifier: Modifier = Modifier) {
                     .background(Color.White)
             ) {
                 Text(
-                    text = "20 moedas",
+                    text = "200",
                     color = Color.Black,
                     style = TextStyle(
                         fontSize = 12.sp,
