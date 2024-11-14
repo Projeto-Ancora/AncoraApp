@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
             AncoraTheme {
                 Scaffold { innerPadding ->
                     //ShopLayout(modifier = Modifier.padding(innerPadding))
+<<<<<<< HEAD
                     // GameScree(modifier = Modifier.padding(innerPadding))
                     ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
                         onBackClick = {},
@@ -34,6 +35,9 @@ class MainActivity : ComponentActivity() {
                         onSobreClick = {},
                         onTrocarClick = {},
                         onSairContaClick = {})
+=======
+                     GameScree(modifier = Modifier.padding(innerPadding))
+>>>>>>> 98f502954c349676fc40f9dc3bf5d9578db34784
                 }
             }
         }
@@ -41,17 +45,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(modifier: Modifier = Modifier) {
-    Button(
-        onClick = { onClick() }
-    ) {
-        Text(
-            text = "P.tela"
-        )
-    }
-}
-
-fun onClick(){
+fun Greeting() {
 
 }
 
