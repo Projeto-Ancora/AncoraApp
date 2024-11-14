@@ -15,6 +15,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.ancora.Telas.GameScree
 import com.example.ancora.Telas.ShopLayout
 import com.example.ancora.ui.theme.AncoraTheme
+import com.example.teladeconfigurao.ConfiguracaoScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +25,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             AncoraTheme {
                 Scaffold { innerPadding ->
-                    ShopLayout(modifier = Modifier.padding(innerPadding))
+                    //ShopLayout(modifier = Modifier.padding(innerPadding))
                     // GameScree(modifier = Modifier.padding(innerPadding))
+                    ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
+                        onBackClick = {},
+                        onAjudaClick = {},
+                        onTermosClick = {},
+                        onSobreClick = {},
+                        onTrocarClick = {},
+                        onSairContaClick = {})
                 }
             }
         }
