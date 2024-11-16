@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.ancora.Telas.Fase
 import com.example.ancora.Telas.GameScree
 import com.example.ancora.Telas.ShopLayout
 import com.example.ancora.ui.theme.AncoraTheme
@@ -24,21 +25,19 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             AncoraTheme {
-                Scaffold { innerPadding ->
-                    //ShopLayout(modifier = Modifier.padding(innerPadding))
-<<<<<<< HEAD
-                    // GameScree(modifier = Modifier.padding(innerPadding))
-                    ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
-                        onBackClick = {},
-                        onAjudaClick = {},
-                        onTermosClick = {},
-                        onSobreClick = {},
-                        onTrocarClick = {},
-                        onSairContaClick = {})
-=======
-                     GameScree(modifier = Modifier.padding(innerPadding))
->>>>>>> 98f502954c349676fc40f9dc3bf5d9578db34784
-                }
+//                Scaffold { innerPadding ->
+//                    //ShopLayout(modifier = Modifier.padding(innerPadding))
+//                    // GameScree(modifier = Modifier.padding(innerPadding))
+//                    ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
+//                        onBackClick = {},
+//                        onAjudaClick = {},
+//                        onTermosClick = {},
+//                        onSobreClick = {},
+//                        onTrocarClick = {},
+//                        onSairContaClick = {})
+//
+//                }
+                Fase()
             }
         }
     }
@@ -53,6 +52,6 @@ fun Greeting() {
 @Composable
 fun GreetingPreview() {
     AncoraTheme {
-        Greeting()
+        Fase()
     }
 }
