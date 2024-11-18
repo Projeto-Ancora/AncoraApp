@@ -7,15 +7,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -34,225 +35,173 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ancora.R
 
+data class Bolha(
+    val id: Int,
+    val pergunta: String,
+    val valorCorreto: Int
+)
+
+data class Peixe(
+    val id: Int,
+    val valor: Int
+)
+
+data class BolhaPeixe(
+    val bolha: Bolha,
+    val peixe: Peixe
+)
+
 @Composable
 fun GameScree(modifier: Modifier = Modifier) {
 
-    var resultadoSum by remember {
-        mutableIntStateOf(0);
-    }
-    var resultadoMult by remember {
-        mutableIntStateOf(0);
-    }
-
-    var resultadoDiv by remember {
-        mutableIntStateOf(0);
-    }
-
-    val (sumConditional, multConditional, divConditional) = compararResultado(
-        resultadoSum, resultadoMult, resultadoDiv, caseSum, caseMult, caseDiv
-    )
-
-    Column(
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier
-            .fillMaxSize()
-            .padding(start = 20.dp),
-        content = bolhas(
-            modifier,
-            sumConditional,
-            multConditional,
-            divConditional,
-            resultadoSum,
-            resultadoMult,
-            resultadoDiv
+    val bolhaList = remember {
+        mutableListOf(
+            Bolha(1, "1+1", 2),
+            Bolha(2, "2x2", 4),
+            Bolha(3, "10/2", 5)
         )
-    )
+    };
 
+    val peixeList = remember {
+        mutableListOf(
+            Peixe(1, 2),
+            Peixe(2, 4),
+            Peixe(3, 5)
+        )
+    };
+
+    var bolhaSelecionada by remember { mutableStateOf<Bolha?>(null) }
+    var bolhaResultado by remember { mutableStateOf<Map<Int, Boolean>>(emptyMap()) };
+
+    val bolhaPeixeList = bolhaList.mapIndexed { index, bolha ->
+        peixeList.getOrNull(index)?.let { BolhaPeixe(bolha, it) }
+    }
+
+    //Coluna para renderizar os peixes e as bolhas
     Column(
-        horizontalAlignment = Alignment.Start,
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxSize()
-            .padding(start = 250.dp)
     ) {
-        Box {
-            Image(
-                painter = painterResource(R.drawable.peixe),
-                contentDescription = "Peixe",
-                modifier.size(130.dp)
-            )
-            Text(
-                text = "4",
-                modifier
-                    .padding(top = 56.dp)
-                    .padding(start = 69.dp)
-                    .clickable { resultadoMult = 4 },
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
-            )
-        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        )
+        {
+            Column {
+                bolhaPeixeList.forEach { pair ->
+                    if (pair != null) {
+                        BolhaItem(
+                            pair.bolha,
+                            bolhaResultado[pair.bolha.id]
+                        ) {
+                            bolhaSelecionada = pair.bolha;
+                            bolhaResultado = emptyMap();
+                        };
+                    };
+                };
+            } //Renderiza a bolha com base em um esboço
 
-        Box {
-            Image(
-                painter = painterResource(R.drawable.peixe),
-                contentDescription = "Peixe",
-                modifier.size(130.dp)
-            )
-            Text(
-                text = "5",
-                modifier
-                    .padding(top = 56.dp)
-                    .padding(start = 69.dp)
-                    .clickable { resultadoDiv = 5 },
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
-            )
-        }
+            Column {
+                bolhaPeixeList.forEach { pair ->
+                    if (pair != null) {
+                        PeixeItem(pair.peixe) {
+                            if (bolhaSelecionada != null) {
+                                verificarAcerto(bolhaSelecionada!!, pair.peixe) { acerto ->
+                                    bolhaResultado = mapOf(bolhaSelecionada!!.id to acerto) // O operador !! afirma que a bolhaSelecionada nunca vai ser nula nesse contexto
+                                };
+                            } else {
+                                bolhaResultado = bolhaList.associate { it.id to false } // Cria um map, apartir de uma coleção, onde definem como as palavras chave e os valores devem ser gerados
+                            }
+                        };
+                    };
+                };
+            };
+        };
+    };
+};
 
-        Box {
-            Image(
-                painter = painterResource(R.drawable.peixe),
-                contentDescription = "Peixe",
-                modifier.size(130.dp)
+//Função para desenhar um circulo
+@Composable
+fun BolhaItem(bolha: Bolha, acerto: Boolean?, onclick: () -> Unit) {
+
+    val corBolha1 = colorResource(R.color.corbolha1);
+    val corBolha2 = colorResource(R.color.corbolha2);
+
+    val textMeasurer = rememberTextMeasurer()
+    val layout = remember(bolha.pergunta, TextStyle(color = Color.Black)) {
+        textMeasurer.measure(bolha.pergunta, TextStyle(color = Color.Black))
+    };
+
+    Box(
+        modifier = Modifier
+            .clickable { onclick() },
+    ) {
+        Canvas(
+            modifier = Modifier.size(100.dp)
+        ) {
+            val brush = Brush.verticalGradient(colors = listOf(corBolha1, corBolha2))
+            drawCircle(
+                brush = brush
             )
-            Text(
-                text = "2",
-                modifier
-                    .padding(top = 56.dp)
-                    .padding(start = 69.dp)
-                    .clickable { resultadoSum = 2 },
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
+            drawText(
+                textMeasurer,
+                text = bolha.pergunta,
+                topLeft = Offset(
+                    x = center.x - layout.size.width / 2,
+                    y = center.y - layout.size.height / 2
+                )
             )
-        }
-    }
-}
+        };
+
+        acerto?.let {
+            CertoOuErrado(
+                acerto = it,
+                resultado = bolha.valorCorreto
+            ) // Dá um retorno visual para o usuário
+        }; // somente condições não nulas passam pela função CertoOuErrado
+    };
+
+    Spacer(modifier = Modifier.size(30.dp))
+
+};
+
+//Função para mostrar peixes
+@Composable
+fun PeixeItem(peixe: Peixe, onclick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(130.dp)
+            .clickable { onclick() }
+    ) {
+        Image(
+            painter = painterResource(R.drawable.peixe),
+            contentDescription = "Peixe"
+        )
+        Text(
+            text = peixe.valor.toString(),
+            modifier = Modifier
+                .padding(top = 45.dp)
+                .padding(start = 69.dp),
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp
+        )
+    };
+
+};
+
+private fun verificarAcerto(
+    bolhaSelecionada: Bolha,
+    peixeSelecionado: Peixe,
+    onResult: (Boolean) -> Unit
+) {
+    onResult(peixeSelecionado.valor == bolhaSelecionada.valorCorreto);
+}; //Função que compara 2 valores que retorna um valor booleano para "acerto"
 
 @Composable
-private fun bolhas(
-    modifier: Modifier,
-    sumConditional: Boolean,
-    multConditional: Boolean,
-    divConditional: Boolean,
-    resultadoSum: Int,
-    resultadoMult: Int,
-    resultadoDiv: Int
-): @Composable() (ColumnScope.() -> Unit) =
-    {
-        val corBolha1 = colorResource(R.color.corbolha1);
-        val corBolha2 = colorResource(R.color.corbolha2);
-
-        val textMeasurer = rememberTextMeasurer();
-        val textDraw = "2x2";
-        val style = TextStyle(
-            color = Color.Black
-        )
-        val textLayoutResult = remember(textDraw, style) {
-            textMeasurer.measure(textDraw, style)
-        }
-
-        Box {
-            Canvas(modifier = Modifier
-                .size(100.dp)
-                .fillMaxSize()
-                .clickable { caseSum.add(2) }) {
-                val brush = Brush.verticalGradient(
-                    colors = listOf(corBolha1, corBolha2)
-                )
-                drawCircle(
-                    brush = brush,
-                )
-                drawText(
-                    textMeasurer, text = "1+1", topLeft = Offset(
-                        x = center.x - textLayoutResult.size.width / 2,
-                        y = center.y - textLayoutResult.size.height / 2
-                    )
-                )
-            }
-
-            CertoOuErrado(sumConditional, resultadoSum)
-        }
-
-        Spacer(modifier.size(20.dp))
-
-        Box {
-            Canvas(modifier = Modifier
-                .size(100.dp)
-                .fillMaxSize()
-                .clickable { caseMult.add(4) }) {
-                val brush = Brush.verticalGradient(
-                    colors = listOf(corBolha1, corBolha2)
-                )
-                drawCircle(
-                    brush = brush,
-                )
-                drawText(
-                    textMeasurer, text = textDraw, topLeft = Offset(
-                        x = center.x - textLayoutResult.size.width / 2,
-                        y = center.y - textLayoutResult.size.height / 2
-                    )
-                )
-            }
-
-            CertoOuErrado(multConditional, resultadoMult)
-        }
-
-        Spacer(modifier.size(20.dp))
-
-        Box {
-            Canvas(modifier = Modifier
-                .size(100.dp)
-                .fillMaxSize()
-                .clickable { caseDiv.add(5) }) {
-                val brush = Brush.verticalGradient(
-                    colors = listOf(corBolha1, corBolha2)
-                )
-                drawCircle(
-                    brush = brush,
-                )
-                drawText(
-                    textMeasurer, text = "10/2", topLeft = Offset(
-                        x = center.x - textLayoutResult.size.width / 1.4f,
-                        y = center.y - textLayoutResult.size.height / 2
-                    )
-                )
-            }
-
-            CertoOuErrado(divConditional, resultadoDiv)
-        }
-    }
-
-var caseSum = mutableListOf<Int>()
-val caseMult = mutableListOf<Int>()
-val caseDiv = mutableListOf<Int>()
-
-private fun compararResultado(
-    respostaSum: Int,
-    respostaMult: Int,
-    respostaDiv: Int,
-    caseSum: List<Int>,
-    caseMult: List<Int>,
-    caseDiv: List<Int>
-): Triple<Boolean, Boolean, Boolean> {
-    val sumAcerto =
-        caseSum.contains(respostaSum) || caseMult.contains(respostaSum) || caseDiv.contains(
-            respostaSum
-        )
-    val multAcerto =
-        caseSum.contains(respostaMult) || caseMult.contains(respostaMult) || caseDiv.contains(
-            respostaMult
-        )
-    val divAcerto =
-        caseSum.contains(respostaDiv) || caseMult.contains(respostaDiv) || caseDiv.contains(
-            respostaDiv
-        )
-
-    return Triple(sumAcerto, multAcerto, divAcerto)
-}
-
-@Composable
-private fun CertoOuErrado(acerto: Boolean, resultado: Int) {
+fun CertoOuErrado(acerto: Boolean, resultado: Int) {
     if (resultado != 0) {
         when {
             acerto -> {
@@ -268,8 +217,8 @@ private fun CertoOuErrado(acerto: Boolean, resultado: Int) {
                 )
             };
         };
-    }
-}
+    };
+};
 
 @Preview
 @Composable
