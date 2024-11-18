@@ -198,7 +198,7 @@ private fun verificarAcerto(
     onResult: (Boolean) -> Unit
 ) {
     onResult(peixeSelecionado.valor == bolhaSelecionada.valorCorreto);
-}; //Função que compara 2 valores que retorna um valor booleano para "acerto"
+}; //Função que compara 2 valores que retorna um valor booleano para "bolhaResultado"
 
 @Composable
 fun CertoOuErrado(acerto: Boolean, resultado: Int) {
