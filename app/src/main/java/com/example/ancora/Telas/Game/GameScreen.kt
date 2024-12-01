@@ -208,7 +208,7 @@ private fun verificarAcerto(
     onResult: (Boolean) -> Unit
 ) {
     onResult(peixeSelecionado.valor == bolhaSelecionada.valorCorreto);
-}; //Função que compara 2 valores que retorna um valor booleano para "acerto"
+}; //Função que compara 2 valores que retorna um valor booleano para "bolhaResultado"
 
 @Composable
 fun CertoOuErrado(
@@ -235,5 +235,10 @@ fun CertoOuErrado(
 @Preview
 @Composable
 fun GameScreenPreview() {
+<<<<<<< HEAD:app/src/main/java/com/example/ancora/Telas/Game/GameScreen.kt
     GameScreen();
 }
+=======
+    GameScree();
+}
+>>>>>>> 96de671e241a7aca5bf8123065d2af6c19d22a36:app/src/main/java/com/example/ancora/Telas/GameScreen.kt
