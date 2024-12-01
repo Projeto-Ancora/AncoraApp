@@ -143,7 +143,6 @@ fun Fase() {
     Trials()
     BarraLateral()
     TopBarPerson()
-
 }
 
 

@@ -5,18 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.ancora.Telas.Fase
-import com.example.ancora.Telas.GameScree
-import com.example.ancora.Telas.ShopLayout
+import com.example.ancora.Telas.Game.GameScreen2
 import com.example.ancora.ui.theme.AncoraTheme
-import com.example.teladeconfigurao.ConfiguracaoScreen
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,27 +22,24 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             AncoraTheme {
-//                Scaffold { innerPadding ->
-//                    //ShopLayout(modifier = Modifier.padding(innerPadding))
-//                    // GameScree(modifier = Modifier.padding(innerPadding))
-//                    ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
-//                        onBackClick = {},
-//                        onAjudaClick = {},
-//                        onTermosClick = {},
-//                        onSobreClick = {},
-//                        onTrocarClick = {},
-//                        onSairContaClick = {})
-//
-//                }
-                Fase()
+                Scaffold { innerPadding ->
+                    //GameScreen(modifier = Modifier.padding(innerPadding))
+                    //ShopLayout(modifier = Modifier.padding(innerPadding))
+                    /*
+                    ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
+                        onBackClick = {},
+                        onAjudaClick = {},
+                        onTermosClick = {},
+                        onSobreClick = {},
+                        onTrocarClick = {},
+                        onSairContaClick = {})
+                }*/
+                   // Fase()
+                GameScreen2(modifier = Modifier.padding(innerPadding))
+                }
             }
         }
     }
-}
-
-@Composable
-fun Greeting() {
-
 }
 
 @Preview(showBackground = true)

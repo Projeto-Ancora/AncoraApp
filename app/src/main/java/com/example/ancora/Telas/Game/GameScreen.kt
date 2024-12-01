@@ -1,4 +1,4 @@
-package com.example.ancora.Telas
+package com.example.ancora.Telas.Game
 
 import android.util.Log
 import androidx.compose.foundation.Canvas
@@ -21,9 +21,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -52,7 +54,7 @@ data class BolhaPeixe(
 )
 
 @Composable
-fun GameScree(modifier: Modifier = Modifier) {
+fun GameScreen(modifier: Modifier = Modifier) {
 
     val bolhaList = remember {
         mutableListOf(
@@ -83,6 +85,10 @@ fun GameScree(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxSize()
+            .paint(
+                painterResource(R.drawable.backgroundfishgame),
+                contentScale = ContentScale.FillBounds
+            )
     ) {
         Row(
             modifier = Modifier
@@ -125,7 +131,10 @@ fun GameScree(modifier: Modifier = Modifier) {
 
 //Função para desenhar um circulo
 @Composable
-fun BolhaItem(bolha: Bolha, acerto: Boolean?, onclick: () -> Unit) {
+fun BolhaItem(
+    bolha: Bolha,
+    acerto: Boolean?,
+    onclick: () -> Unit) {
 
     val corBolha1 = colorResource(R.color.corbolha1);
     val corBolha2 = colorResource(R.color.corbolha2);
@@ -170,7 +179,9 @@ fun BolhaItem(bolha: Bolha, acerto: Boolean?, onclick: () -> Unit) {
 
 //Função para mostrar peixes
 @Composable
-fun PeixeItem(peixe: Peixe, onclick: () -> Unit) {
+fun PeixeItem(
+    peixe: Peixe,
+    onclick: () -> Unit) {
     Box(
         modifier = Modifier
             .size(130.dp)
@@ -189,7 +200,6 @@ fun PeixeItem(peixe: Peixe, onclick: () -> Unit) {
             fontSize = 20.sp
         )
     };
-
 };
 
 private fun verificarAcerto(
@@ -201,7 +211,9 @@ private fun verificarAcerto(
 }; //Função que compara 2 valores que retorna um valor booleano para "acerto"
 
 @Composable
-fun CertoOuErrado(acerto: Boolean, resultado: Int) {
+fun CertoOuErrado(
+    acerto: Boolean,
+    resultado: Int) {
     if (resultado != 0) {
         when {
             acerto -> {
@@ -223,5 +235,5 @@ fun CertoOuErrado(acerto: Boolean, resultado: Int) {
 @Preview
 @Composable
 fun GameScreenPreview() {
-    GameScree();
+    GameScreen();
 }
