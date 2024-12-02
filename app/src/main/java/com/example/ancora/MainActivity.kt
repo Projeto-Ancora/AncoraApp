@@ -12,10 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.ancora.Telas.AjudaSuporteScreen
+import com.example.ancora.Telas.CadastroScreen
 import com.example.ancora.Telas.GameScree
+import com.example.ancora.Telas.LoginScreen
 import com.example.ancora.Telas.ShopLayout
 import com.example.ancora.ui.theme.AncoraTheme
 import com.example.teladeconfigurao.ConfiguracaoScreen
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,18 +31,25 @@ class MainActivity : ComponentActivity() {
             AncoraTheme {
                 Scaffold { innerPadding ->
                     //ShopLayout(modifier = Modifier.padding(innerPadding))
-<<<<<<< HEAD
+
                     // GameScree(modifier = Modifier.padding(innerPadding))
-                    ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
+                   /* ConfiguracaoScreen (modifier = Modifier.padding(innerPadding),
                         onBackClick = {},
                         onAjudaClick = {},
                         onTermosClick = {},
                         onSobreClick = {},
                         onTrocarClick = {},
                         onSairContaClick = {})
-=======
-                     GameScree(modifier = Modifier.padding(innerPadding))
->>>>>>> 98f502954c349676fc40f9dc3bf5d9578db34784
+                    */
+
+                    AjudaSuporteScreen(modifier = Modifier.padding(innerPadding))
+
+                    //CadastroScreen( modifier = Modifier.padding(innerPadding))
+
+                    //LoginScreen( modifier = Modifier.padding(innerPadding))
+
+                     //GameScree(modifier = Modifier.padding(innerPadding))
+
                 }
             }
         }
