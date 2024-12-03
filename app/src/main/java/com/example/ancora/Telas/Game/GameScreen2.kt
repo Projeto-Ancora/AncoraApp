@@ -17,8 +17,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
@@ -29,12 +33,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ancora.R
 
-data class Item(
+data class Item_dc(
     val _id: Int,
-    val type: TypeItem
+    val type: TypeItem_dc
 )
 
-enum class TypeItem {
+enum class TypeItem_dc {
     NECESSITY,
     DESIRE
 }
@@ -43,14 +47,29 @@ enum class TypeItem {
 fun GameScreen2(modifier: Modifier = Modifier) {
 
     val imageMapping = mapOf(
-        Item(1, TypeItem.NECESSITY) to R.drawable.shirt,
-        Item(2, TypeItem.NECESSITY) to R.drawable.arrozefeijao,
-        Item(1, TypeItem.DESIRE) to R.drawable.urso500,
-        Item(2, TypeItem.DESIRE) to R.drawable.lollipop500
+        Item_dc(1, TypeItem_dc.NECESSITY) to R.drawable.shirt,
+        Item_dc(2, TypeItem_dc.NECESSITY) to R.drawable.arrozefeijao,
+        Item_dc(1, TypeItem_dc.DESIRE) to R.drawable.urso500,
+        Item_dc(2, TypeItem_dc.DESIRE) to R.drawable.lollipop500
     )
+
+    val itemList = remember { mutableStateOf(imageMapping.keys.shuffled().toMutableList()) }
 
     val currentItem = remember {
         mutableStateOf(imageMapping.keys.random())
+    }
+
+    var chestNumber by remember {
+        mutableIntStateOf(0)
+    }
+    val img = chestClick(chestNumber)
+
+    fun getNextItem() {
+        itemList.value.remove(currentItem.value)
+        if (itemList.value.isEmpty()) {
+            itemList.value = imageMapping.keys.shuffled().toMutableList()
+        }
+        currentItem.value = itemList.value.first()
     }
 
     //====================================
@@ -83,15 +102,8 @@ fun GameScreen2(modifier: Modifier = Modifier) {
         ) {
             Button(
                 onClick = {
-                    when {
-                        currentItem.value.type == TypeItem.NECESSITY -> {
-                            Log.d("acerto", "acertou")
-                        };
-                        else -> {
-                            Log.d("erro", "errou")
-                        }
-                    }
-                    currentItem.value = imageMapping.keys.random();
+                    verificarAcerto2(currentItem, TypeItem_dc.NECESSITY){}
+                    getNextItem()
                 },
                 modifier
                     .width(150.dp)
@@ -113,11 +125,10 @@ fun GameScreen2(modifier: Modifier = Modifier) {
 
             Button(
                 onClick = {
-                    when {
-                    currentItem.value.type == TypeItem.DESIRE -> {Log.d("acerto", "acertou")}
-                    else -> {Log.d("erro", "errou")}
-                    }
-                    currentItem.value = imageMapping.keys.random();
+                    verificarAcerto2(currentItem, TypeItem_dc.DESIRE){
+                        sum -> chestNumber += sum
+                    };
+                    getNextItem();
                 },
                 modifier
                     .width(150.dp)
@@ -137,21 +148,40 @@ fun GameScreen2(modifier: Modifier = Modifier) {
         };
 
         currentItem.value.let { item ->
-            val imgRes = imageMapping[item] ?: R.drawable.urso500
+            val imgRes = imageMapping[item]
+                ?: R.drawable.urso500 // if(imageMapping != null) imageMapping[item] else R.drawable.urso500
             Image(
                 painter = painterResource(imgRes),
                 contentDescription = "currentImage"
             )
-        }
+        };
 
         Image(
-            painter = painterResource(R.drawable.chest),
+            painter = painterResource(img),
             contentDescription = "chest",
             modifier
                 .size(195.dp)
         )
     };
 };
+
+fun verificarAcerto2(currentItem: MutableState<Item_dc>, expectedType: TypeItem_dc, sum: (Int)-> Unit) {
+    if (currentItem.value.type == expectedType) {
+        Log.d("acerto", "acerto");
+        sum(1)
+    } else Log.d("erro", "erro");
+}
+
+fun chestClick(num: Int): Int {
+    val img = when (num) {
+        1 -> R.drawable.bau1
+        2 -> R.drawable.bau2
+        3 -> R.drawable.bau3
+        4 -> R.drawable.bau4
+        else -> R.drawable.chest
+    }
+    return img
+}
 
 @Preview
 @Composable
