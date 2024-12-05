@@ -235,11 +235,5 @@ fun CertoOuErrado(
 @Preview
 @Composable
 fun GameScreenPreview() {
-<<<<<<< HEAD
-
     GameScreen();
 }
-=======
-    GameScreen();
-}
->>>>>>> 9942d93964b29bb0c837cf2dce5f9372d1db16ce

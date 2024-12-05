@@ -102,7 +102,9 @@ fun GameScreen2(modifier: Modifier = Modifier) {
         ) {
             Button(
                 onClick = {
-                    verificarAcerto2(currentItem, TypeItem_dc.NECESSITY){}
+                    verificarAcerto2(currentItem, TypeItem_dc.NECESSITY){
+                        sum -> chestNumber += sum
+                    }
                     getNextItem()
                 },
                 modifier
@@ -168,7 +170,7 @@ fun GameScreen2(modifier: Modifier = Modifier) {
 fun verificarAcerto2(currentItem: MutableState<Item_dc>, expectedType: TypeItem_dc, sum: (Int)-> Unit) {
     if (currentItem.value.type == expectedType) {
         Log.d("acerto", "acerto");
-        sum(1)
+        sum(1);
     } else Log.d("erro", "erro");
 }
 
