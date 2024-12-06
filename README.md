@@ -94,7 +94,7 @@ A equipe por trás do Âncora:
 
 ---
 
-## **Principais contribuidores do projeto**
+## **Contribuidores do projeto**
 
 <div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
   <a href="https://www.linkedin.com/in/otaviogon%C3%A7alves/" target="_blank">
