@@ -57,16 +57,32 @@ O projeto Âncora está comprometido com a ODS 4 (Educação de Qualidade). No c
 
 ---
 
-## 🛠️ **Principais Funcionalidades**  
+## 🛠️ **Principais Funcionalidades**
+
+### **MENU PRINCIPAL**
+Tela onde está presente as 3 principais funcionalidades do aplicativo:
+
+![home](https://github.com/user-attachments/assets/a5b7b6a3-4c53-405e-b4a9-e65995d8b9a3)
+
 
 ### 1. **JOGAR** 🕹️
-As crianças interagem com animações e mini games educativos, aprendendo noções financeiras de maneira divertida e envolvente.  
+As crianças interagem com animações e mini games educativos, aprendendo noções financeiras de maneira divertida e envolvente.
+
+![Fase](https://github.com/user-attachments/assets/ace93ac4-f6cc-4914-b3a5-3a1d1f6fe7ab)
+
+
 
 ### 2. **PERFIL** 👤
 Permite que as crianças personalizem seu nome e avatar, criando uma experiência mais pessoal e envolvente dentro do app.
 
+![Perfil](https://github.com/user-attachments/assets/92195a01-70be-4e97-aa95-dbef52661892)
+
+
 ### 3. **LOJA** 🏪
 Nessa seção, as crianças podem gastar as moedas acumuladas para adquirir pets e outros itens, incentivando o uso responsável de recursos dentro do jogo.
+
+![Loja](https://github.com/user-attachments/assets/60758076-fe5b-49db-a2a0-7ac7e7c3e2dd)
+
 
 ---
 ## 📱 **Tecnologias e Ferramentas**
