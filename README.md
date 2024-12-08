@@ -98,12 +98,15 @@ A equipe por trás do Âncora:
 
 <div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
   <a href="https://www.linkedin.com/in/otaviogon%C3%A7alves/" target="_blank">
-    <img src="https://github.com/user-attachments/assets/185ee504-a168-45e3-8af4-0f12bce15bab" alt="tavin" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+    <img src="https://github.com/user-attachments/assets/185ee504-a168-45e3-8af4-0f12bce15bab" alt="Otavio" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
   </a>
   <a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank">
-    <img src="https://github.com/user-attachments/assets/e36f897b-74e7-4d7d-99cb-f3b3bf7562c4" alt="dandan" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+    <img src="https://github.com/user-attachments/assets/e36f897b-74e7-4d7d-99cb-f3b3bf7562c4" alt="Danilo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
   </a>
   <a href="https://www.linkedin.com/in/lucas-miranda7/" target="_blank">
-    <img src="https://github.com/user-attachments/assets/727b474b-5db4-43b5-9c4b-f96591a6c522" alt="luquinhas" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+    <img src="https://github.com/user-attachments/assets/727b474b-5db4-43b5-9c4b-f96591a6c522" alt="Lucas" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+  </a>
+  <a href="https://www.linkedin.com/in/murilo-coelho10" target="_blank">
+    <img src="https://github.com/user-attachments/assets/6e1e3b53-f908-4431-b664-7dc923a1f6a9" alt="Murilo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
   </a>
 </div>
