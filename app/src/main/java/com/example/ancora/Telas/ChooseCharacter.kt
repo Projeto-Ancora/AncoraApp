@@ -24,6 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ancora.R
 import com.example.ancora.ui.theme.AncoraTheme
 import com.example.ancora.ui.theme.Fontebaloo
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AncoraTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainContent(innerPadding)
+                    MainContent(innerPadding, navController = rememberNavController())
                 }
             }
         }
@@ -43,7 +45,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainContent(innerPadding: PaddingValues) {
+fun MainContent(innerPadding: PaddingValues, navController: NavController) {
     Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
         Image(
             painter = painterResource(id = R.drawable.backgroundcharacterscreen),
@@ -64,16 +66,16 @@ fun MainContent(innerPadding: PaddingValues) {
                 style = TextStyle(fontSize = 30.sp, fontFamily = Fontebaloo, fontWeight = FontWeight.Bold),
                 modifier = Modifier.padding(bottom = 20.dp)
             )
-            BotaoMarinheiroMasculino()
+            BotaoMarinheiroMasculino(navController = navController)
             Spacer(modifier = Modifier.height(16.dp))
-            BotaoMarinheiroFeminino()
+            BotaoMarinheiroFeminino(navController = navController)
         }
     }
 }
 
 
 @Composable
-fun BotaoMarinheiroMasculino(modifier: Modifier = Modifier) {
+fun BotaoMarinheiroMasculino(modifier: Modifier = Modifier, navController: NavController) {
     Box(
         modifier = modifier
             .requiredWidth(width = 272.dp)
@@ -91,7 +93,7 @@ fun BotaoMarinheiroMasculino(modifier: Modifier = Modifier) {
                 .border(border = BorderStroke(1.dp, Color.Black),
                     shape = RoundedCornerShape(30.dp)))
         OutlinedButton(
-            onClick = { },
+            onClick = {navController.navigate("menu_principal")},
             shape = RoundedCornerShape(30.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xffff9a05)),
             border = BorderStroke(1.dp, Color.Black),
@@ -129,7 +131,7 @@ fun BotaoMarinheiroMasculino(modifier: Modifier = Modifier) {
 
 
 @Composable
-fun BotaoMarinheiroFeminino(modifier: Modifier = Modifier) {
+fun BotaoMarinheiroFeminino(modifier: Modifier = Modifier, navController: NavController) {
     Box(
         modifier = modifier
             .requiredWidth(width = 268.dp)
@@ -147,7 +149,7 @@ fun BotaoMarinheiroFeminino(modifier: Modifier = Modifier) {
                 .border(border = BorderStroke(1.dp, Color.Black),
                     shape = RoundedCornerShape(30.dp)))
         OutlinedButton(
-            onClick = { },
+            onClick = {navController.navigate("menuprincipal")},
             shape = RoundedCornerShape(30.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xffff9a05)),
             border = BorderStroke(1.dp, Color.Black),
@@ -187,19 +189,19 @@ fun BotaoMarinheiroFeminino(modifier: Modifier = Modifier) {
 @Preview(widthDp = 268, heightDp = 232)
 @Composable
 private fun BotaoMarinheiroMasculinoPreview() {
-    BotaoMarinheiroMasculino(Modifier)
+    BotaoMarinheiroMasculino(Modifier, navController = rememberNavController())
 }
 
 @Preview(widthDp = 268, heightDp = 275)
 @Composable
 private fun BotaoMarinheiroFemininoPreview() {
-    BotaoMarinheiroFeminino(Modifier)
+    BotaoMarinheiroFeminino(Modifier, navController = rememberNavController())
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MainContentPreview() {
     AncoraTheme  {
-        MainContent(PaddingValues())
+        MainContent(PaddingValues(), navController = rememberNavController())
     }
 }

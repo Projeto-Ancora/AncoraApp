@@ -29,11 +29,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ancora.R
 
 
 @Composable
-fun ShopLayout(modifier: Modifier){
+fun ShopLayout(modifier: Modifier, navController: NavController){
     BackgroundShop()
     TopLayout()
     SereiaBackground()
@@ -64,7 +65,7 @@ fun Money(){
 
     ){
         Image(painterResource(R.drawable.dinheiro), contentDescription = "Moedas coletadas", modifier = Modifier.size(22.dp))
-        Text("200", fontSize = 15.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 3.dp, top= 3.dp))
+        Text("200", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Black, modifier = Modifier.padding(start = 3.dp, top= 3.dp))
     }
 }
 @Composable

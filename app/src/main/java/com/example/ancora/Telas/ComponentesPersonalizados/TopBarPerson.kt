@@ -127,6 +127,7 @@ fun MoneyFase() {
                 Text(
                     "200",
                     fontSize = 15.sp,
+                    color = Color.Black,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 3.dp, top = 3.dp)
                 )

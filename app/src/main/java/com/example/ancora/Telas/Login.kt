@@ -1,112 +1,141 @@
 package com.example.ancora.Telas
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ancora.R
+import com.example.ancora.ui.theme.Fontebaloo
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        // Fundo da tela
+fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = Color(0xff2da2db))
+    ) {
         Image(
-            painter = painterResource(id = R.drawable.login),
-            contentDescription = null,
+            painter = painterResource(id = R.drawable.telacadastro),
+            contentDescription = "Tela de cadastro",
+            contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(horizontal = 24.dp)
+                .padding(top = 40.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
-            // Logo do aplicativo
             Image(
                 painter = painterResource(id = R.drawable.logo),
-                contentDescription = "Logo Âncora",
+                contentDescription = "Logo",
                 modifier = Modifier
-                    .size(250.dp)
+                    .size(width = 270.dp, height = 240.dp)
                     .padding(bottom = 16.dp)
             )
-
-            // Título
             Text(
-                text = "Ajuda e Suporte",
+                text = "Login",
                 color = Color.White,
-                fontSize = 25.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 24.dp)
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge.copy(fontFamily = Fontebaloo),
+                modifier = Modifier.padding(bottom = 32.dp)
             )
 
-            // Tela de entrada
-            EntrarScreen()
+            TextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text(
+                        text = "Digite seu e-mail",
+                        style = TextStyle(fontFamily = Fontebaloo)
+                    )
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color(0xffebdede)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text(
+                        text = "Digite sua senha",
+                        style = TextStyle(fontFamily = Fontebaloo)
+                    )
+                },
+                visualTransformation = PasswordVisualTransformation(),
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color(0xffebdede)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "Esqueceu sua senha?",
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                style = TextStyle(fontSize = 18.sp, fontFamily = Fontebaloo),
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Button(
+                onClick = {navController.navigate("menu")},
+                shape = RoundedCornerShape(76.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xff5ad310)),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(66.dp)
+            ) {
+                Text(
+                    text = "Confirmar",
+                    color = Color.White,
+                    style = MaterialTheme.typography.headlineLarge.copy(fontFamily = Fontebaloo)
+                )
+            }
+
         }
-    }
-}
-
-@Composable
-fun EntrarScreen() {
-    // Estados para armazenar email e senha
-    var email by remember { mutableStateOf("") }
-    var senha by remember { mutableStateOf("") }
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Campo de texto para email
-        TextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            placeholder = { Text("Digite seu email") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
+        Image(
+            painter = painterResource(id = R.drawable.setavoltar),
+            contentDescription = "setavoltar",
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .offset(x = 32.dp, y = 84.dp)
+                .requiredWidth(24.dp)
+                .requiredHeight(20.dp)
+                .clickable {
+                    navController.popBackStack()
+                }
         )
-
-        // Campo de texto para senha
-        TextField(
-            value = senha,
-            onValueChange = { senha = it },
-            label = { Text("Senha") },
-            placeholder = { Text("Digite sua senha") },
-            singleLine = true,
-            visualTransformation = PasswordVisualTransformation(),//faz a senha ficar oculta
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        // Botão de login
-        Button(
-            onClick = {
-                println("Email: $email, Senha: $senha")
-                // Adicione lógica de validação ou navegação aqui
-            },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xffFF9A05), // Cor de fundo do botão
-                contentColor = Color.White)   // Cor do texto
-        ) {
-            Text("Entrar")
-        }
     }
 }

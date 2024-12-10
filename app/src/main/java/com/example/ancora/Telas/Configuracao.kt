@@ -1,4 +1,4 @@
-package com.example.teladeconfigurao
+package com.example.teladeconfiguracao
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -15,27 +15,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ancora.R
 
 @Composable
 fun ConfiguracaoScreen(
     modifier: Modifier = Modifier,
-    onBackClick: () -> Unit,
-    onAjudaClick: () -> Unit,
-    onTermosClick: () -> Unit,
-    onSobreClick: () -> Unit,
-    onTrocarClick: () -> Unit,
-    onSairContaClick: () -> Unit
+    navController: NavController
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Image(
             painter = painterResource(id = R.drawable.teladeconfiguracao),
             contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         )
 
         Column(
@@ -44,29 +38,7 @@ fun ConfiguracaoScreen(
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .clickable(onClick = onBackClick)
-                    .padding(vertical = 16.dp)
-
-            )
-
-            { Spacer(modifier = Modifier.width(8.dp))
-                Icon(
-                    painter = painterResource(id = R.drawable.setavoltar),
-                    contentDescription = "Voltar",
-                    tint = Color.White,
-                    modifier = Modifier.size(60.dp)
-                        .fillMaxSize()
-                        .requiredSize(size = 36.dp)
-                        .clickable(onClick = onBackClick)
-
-                )
-
-                Spacer(modifier = Modifier.width(8.dp)) // Espaçamento entre a seta e o texto
-
+                Spacer(modifier = Modifier.width(8.dp)) // Espaço entre ícone e texto
                 Text(
                     text = "Configurações",
                     fontSize = 24.sp,
@@ -77,8 +49,9 @@ fun ConfiguracaoScreen(
 
             Spacer(modifier = Modifier.height(35.dp))
 
+            // Botões das Configurações
             Button(
-                onClick = onAjudaClick,
+                onClick = { /* TODO: Implementar Ajuda e Suporte */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFA500)),
                 modifier = Modifier
                     .height(60.dp)
@@ -91,7 +64,7 @@ fun ConfiguracaoScreen(
             Spacer(modifier = Modifier.height(35.dp))
 
             Button(
-                onClick = onSobreClick,
+                onClick = { /* TODO: Implementar Sobre o Aplicativo */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFA500)),
                 modifier = Modifier
                     .height(60.dp)
@@ -104,7 +77,7 @@ fun ConfiguracaoScreen(
             Spacer(modifier = Modifier.height(35.dp))
 
             Button(
-                onClick = onTrocarClick,
+                onClick = { /* TODO: Implementar Trocar de Conta */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFA500)),
                 modifier = Modifier
                     .height(60.dp)
@@ -117,7 +90,7 @@ fun ConfiguracaoScreen(
             Spacer(modifier = Modifier.height(35.dp))
 
             Button(
-                onClick = onSairContaClick,
+                onClick = { /* TODO: Implementar Sair da Conta */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                 modifier = Modifier
                     .height(60.dp)
@@ -128,7 +101,6 @@ fun ConfiguracaoScreen(
             }
 
             Spacer(modifier = Modifier.height(32.dp))
-
         }
     }
-}
+

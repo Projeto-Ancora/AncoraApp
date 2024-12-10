@@ -3,112 +3,85 @@ package com.example.ancora
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ancora.R
+import androidx.navigation.NavController
 import com.example.ancora.ui.theme.Fontebaloo
 
 @Composable
-fun TelaDeCadastroLogin(modifier: Modifier = Modifier) {
+fun TelaDeCadastroLogin(navController: NavController, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .requiredWidth(width = 360.dp)
-            .requiredHeight(height = 800.dp)
+            .fillMaxSize()
             .background(color = Color(0xff2da2db))
     ) {
         Image(
             painter = painterResource(id = R.drawable.telacadastro),
-            contentDescription = "teladecadastro",
-            modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(x = (-2).dp,
-                    y = 0.dp)
-                .requiredWidth(width = 361.dp)
-                .requiredHeight(height = 800.dp))
-        Button(
-            onClick = { },
-            shape = RoundedCornerShape(76.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xffff9a05)),
-            contentPadding = PaddingValues(all = 16.dp),
-            modifier = Modifier
-                .align(alignment = Alignment.BottomStart)
-                .offset(x = 61.dp,
-                    y = (-112).dp)
-                .requiredWidth(width = 234.dp)
-                .requiredHeight(height = 62.dp)
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(22.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .requiredWidth(width = 234.dp)
-                    .requiredHeight(height = 62.dp)
-            ) {
-                Text(
-                    text = "Fazer Login",
-                    color = Color(0xfffffdfd),
-                    style = MaterialTheme.typography.headlineLarge)
-            }
-        }
-        Button(
-            onClick = { },
-            shape = RoundedCornerShape(76.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xffff9a05)),
-            contentPadding = PaddingValues(all = 16.dp),
-            modifier = Modifier
-                .align(alignment = Alignment.BottomStart)
-                .offset(x = 18.dp,
-                    y = (-193).dp)
-                .requiredWidth(width = 328.dp)
-                .requiredHeight(height = 67.dp)
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(22.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .requiredWidth(width = 328.dp)
-                    .requiredHeight(height = 67.dp)
-            ) {
-                Text(
-                    text = "Minha primeira vez no Âncora",
-                    color = Color.White,
-                    style = TextStyle(
-                        fontFamily = Fontebaloo,
-                        fontSize = 21.sp)
-                )
-            }
-        }
+            contentDescription = "Tela de Cadastro",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Image(
             painter = painterResource(id = R.drawable.logo),
-            contentDescription = "logo",
+            contentDescription = "Logo",
             modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(x = 25.dp,
-                    y = 80.dp)
-                .requiredWidth(width = 306.dp)
-                .requiredHeight(height = 282.dp))
+                .align(Alignment.TopCenter)
+                .padding(top = 60.dp)
+                .size(width = 350.dp, height = 320.dp)
+        )
+
+        Button(
+            onClick = {navController.navigate("cadastro")},
+            shape = RoundedCornerShape(76.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xffff9a05)),
+            contentPadding = PaddingValues(16.dp),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 160.dp)
+                .fillMaxWidth(0.9f)
+                .height(67.dp)
+        ) {
+            Text(
+                text = "Minha primeira vez no Âncora",
+                color = Color.White,
+                style = TextStyle(
+                    fontFamily = Fontebaloo,
+                    fontSize = 21.sp
+                )
+            )
+        }
+
+        Button(
+            onClick = { navController.navigate("login") },
+            shape = RoundedCornerShape(76.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xffff9a05)),
+            contentPadding = PaddingValues(16.dp),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 80.dp)
+                .fillMaxWidth(0.65f)
+                .height(62.dp)
+        ) {
+            Text(
+                text = "Fazer Login",
+                color = Color.White,
+                style = TextStyle(
+                    fontFamily = Fontebaloo,
+                    fontSize = 21.sp
+                )
+            )
+        }
     }
 }
 
-@Preview(widthDp = 360, heightDp = 800)
-@Composable
-private fun TelaDeCadastroLoginPreview() {
-    TelaDeCadastroLogin(Modifier)
-}

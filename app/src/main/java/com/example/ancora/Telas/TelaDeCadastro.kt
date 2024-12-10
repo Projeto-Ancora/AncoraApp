@@ -1,113 +1,199 @@
 package com.example.ancora.Telas
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ancora.R
+import com.example.ancora.ui.theme.Fontebaloo
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CadastroScreen (modifier: Modifier = Modifier) {
+fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
+            .fillMaxSize() // Preenche toda a tela
     ) {
         Image(
             painter = painterResource(id = R.drawable.telacadastro),
-            contentDescription = null,
+            contentDescription = "a Minha Primeira Vez...",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxSize() // Preenche toda a área disponível
         )
+
+        // Logo na posição correta
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "logo",
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .offset(y = 40.dp)
+                .requiredWidth(212.dp)
+                .requiredHeight(195.dp)
+        )
+
+        // Texto de título e campos de entrada mais para baixo
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 24.dp
-                )
-                .verticalScroll(rememberScrollState())
-
-
+                .padding(horizontal = 24.dp) // Adiciona padding para as bordas
+                .align(Alignment.Center) // Centraliza a coluna
+                .padding(top = 260.dp) // Desloca os campos mais para baixo
         ) {
-            Spacer(modifier = Modifier.height(30.dp))
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+            // Título "Login"
+            Text(
+                text = "Cadastro",
+                style = TextStyle(
+                    fontFamily = Fontebaloo,
+                    fontSize = 28.sp,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                ),
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
+            )
+
+            // E-mail
+            TextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text(
+                        text = "Digite seu e-mail",
+                        style = TextStyle(fontFamily = Fontebaloo)
+                    )
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color(0xffebdede)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .padding(horizontal = 16.dp)
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text(
+                        text = "Digite a data de nascimento",
+                        style = TextStyle(fontFamily = Fontebaloo)
+                    )
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color(0xffebdede)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .padding(horizontal = 16.dp)
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Senha
+            TextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text(
+                        text = "Digite sua senha",
+                        style = TextStyle(fontFamily = Fontebaloo)
+                    )
+                },
+                visualTransformation = PasswordVisualTransformation(),
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color(0xffebdede)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .padding(horizontal = 16.dp)
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Telefone
+            TextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text(
+                        text = "Digite seu telefone",
+                        style = TextStyle(fontFamily = Fontebaloo)
+                    )
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color(0xffebdede)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .padding(horizontal = 16.dp)
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Termos e Condições
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(horizontal = 16.dp)
             ) {
-
-
-                Image(
-                    painter = painterResource(id = R.drawable.logo),
-                    contentDescription = "Logo Âncora",
-                    modifier = Modifier
-                        .size(250.dp)
-                        .padding(bottom = 0.dp)
-                        .align(Alignment.CenterHorizontally)
+                Checkbox(
+                    checked = false,
+                    onCheckedChange = {},
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "Ao se inscrever, você concorda com nossos Termos e Condições",
+                    style = TextStyle(fontSize = 14.sp, fontFamily = Fontebaloo),
+                    modifier = Modifier.weight(1f)
                 )
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
-            Column(
+            Button(
+                onClick = {navController.navigate("escolherpersona")},
+                shape = RoundedCornerShape(76.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xff5ad310)),
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .fillMaxWidth()
+                    .height(66.dp)
             ) {
-
-
-                Button(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .height(100.dp)
-                        .width(300.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xffFF9A05), // Cor de fundo do botão
-                        contentColor = Color.White   // Cor do texto
-                    )
-                ) {
-                    Text(text = "Login", fontSize = 18.sp)
-                }
-
-                Spacer(modifier = Modifier.height(40.dp))
-
-                Button(
-                    onClick = { },
-                    modifier = Modifier
-                        .height(100.dp)
-                        .width(300.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF5053FD), // Cor de fundo do botão
-                        contentColor = Color.White   // Cor do texto
-                    )
-                ) {
-                    Text(text = "Cadastrar", fontSize = 18.sp)
-                }
-
-
+                Text(
+                    text = "Confirmar",
+                    color = Color.White,
+                    style = MaterialTheme.typography.headlineLarge.copy(fontFamily = Fontebaloo)
+                )
             }
         }
     }
 }
+

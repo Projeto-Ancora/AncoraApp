@@ -30,10 +30,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ancora.R
-import com.example.ancora.Telas.ComponentesPersonalizados.BarraLateral
 import com.example.ancora.Telas.ComponentesPersonalizados.TopBarPerson
+import com.example.ancora.telas.componentespersonalizados.BarraLateral
 
 @Composable
 fun BackgroundFase() {
@@ -79,6 +80,7 @@ fun Trials() {
             Text(
                 "1",
                 fontSize = 40.sp,
+                color = Color.Black,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.align(Alignment.TopCenter).padding(start = 23.dp ,top = 180.dp)
             )
@@ -90,6 +92,7 @@ fun Trials() {
             Text(
                 "2",
                 fontSize = 40.sp,
+                color = Color.Black,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.align(Alignment.Center).padding(bottom = 175.dp, end = 65.dp)
 
@@ -100,6 +103,7 @@ fun Trials() {
         Text(
             "3",
             fontSize = 40.sp,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Center).padding(start = 100.dp, top = 10.dp)
 
@@ -110,6 +114,7 @@ fun Trials() {
         Text(
             "4",
             fontSize = 40.sp,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Center).padding(start = 1.dp, top = 154.dp)
 
@@ -121,6 +126,7 @@ fun Trials() {
             "5",
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold,
+            color = Color.Black,
             modifier = Modifier.align(Alignment.BottomEnd).padding(end = 65.dp ,bottom = 200.dp)
 
         )
@@ -138,10 +144,10 @@ fun Trials() {
 
 
 @Composable
-fun Fase() {
+fun Fase(navController: NavController) {
     BackgroundFase()
     Trials()
-    BarraLateral()
+    BarraLateral(navController = rememberNavController())
     TopBarPerson()
 }
 
@@ -149,5 +155,5 @@ fun Fase() {
 @Composable
 @Preview
 fun PreviewFase() {
-    Fase()
+    Fase(navController = rememberNavController())
 }
