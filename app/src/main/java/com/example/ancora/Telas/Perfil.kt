@@ -48,12 +48,12 @@ fun Perfil(modifier: Modifier = Modifier, navController: NavController) {
                 painter = painterResource(id = R.drawable.setavoltar),
                 contentDescription = "setadevoltar",
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(28.dp)
                     .clickable {
                         navController.popBackStack()
                     }
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.weight(0.7f))
             Text(
                 text = "Perfil",
                 color = Color.White,
@@ -62,9 +62,11 @@ fun Perfil(modifier: Modifier = Modifier, navController: NavController) {
                     fontSize = 36.sp,
                     fontFamily = Fontebaloo
                 ),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(2f)
             )
+            Spacer(modifier = Modifier.weight(1f))
         }
+
         Box(
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -81,6 +83,7 @@ fun Perfil(modifier: Modifier = Modifier, navController: NavController) {
                 modifier = Modifier.fillMaxSize()
             )
         }
+
         Text(
             text = "Marinheiro",
             color = Color.White,
@@ -94,6 +97,7 @@ fun Perfil(modifier: Modifier = Modifier, navController: NavController) {
                 .align(Alignment.TopCenter)
                 .padding(top = 380.dp)
         )
+
         Button(
             onClick = { },
             shape = RoundedCornerShape(97.dp),

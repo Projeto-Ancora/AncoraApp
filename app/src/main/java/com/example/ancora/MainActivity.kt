@@ -76,8 +76,7 @@ fun AppNavigator(modifier: Modifier = Modifier, navController: androidx.navigati
             Perfil(navController = navController)
         }
         composable("config") {
-            ConfiguracaoScreen(modifier = modifier, navController = navController
-            )
+            ConfiguracaoScreen(modifier = modifier, navController = navController)
         }
     }
 }

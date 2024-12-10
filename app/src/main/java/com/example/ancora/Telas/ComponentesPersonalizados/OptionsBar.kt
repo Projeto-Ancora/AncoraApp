@@ -1,4 +1,4 @@
-package com.example.ancora.telas.componentespersonalizados
+package com.example.ancora.Telas.ComponentesPersonalizados
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
