@@ -133,28 +133,28 @@ Nessa seção, as crianças podem gastar as moedas acumuladas para adquirir pets
   <tr>
     <td align="center">
       <a href="https://www.linkedin.com/in/alysson-melo-6517732b0/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/c1a4fff4-2667-4360-a7e8-5e38cf124ec6" alt="alysson" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/alysson.jpg" alt="alysson" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Alysson - Product Owner/Front End
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/luiz-felipe-i/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/48f8e9d9-080f-4a74-b1e8-532cf1f28935" alt="luiz" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/luiz.jpg" alt="luiz" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Luiz - Scrum Master/Full Stack
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/luccas-gabriel-62909b248/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/62b7f180-e9df-4b54-ae13-2a46ce7034ad" alt="luccas" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/luccas.jpg" alt="luccas" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Luccas - Back End
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/gustavo-correia-572g48s/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/209f896a-314d-4ec9-828e-f3b5958d6188" alt="correia" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/correia.jpg" alt="correia" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Gustavo - Back End/Financeiro
@@ -170,28 +170,28 @@ Nessa seção, as crianças podem gastar as moedas acumuladas para adquirir pets
   <tr>
     <td align="center">
       <a href="https://www.linkedin.com/in/otaviogon%C3%A7alves/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/185ee504-a168-45e3-8af4-0f12bce15bab" alt="Otavio" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/Otavio.jpg" alt="Otavio" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Otávio
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/danilo-alcantara-096094210/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/e36f897b-74e7-4d7d-99cb-f3b3bf7562c4" alt="Danilo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/dandan.jpg" alt="Danilo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Danilo
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/lucas-miranda7/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/727b474b-5db4-43b5-9c4b-f96591a6c522" alt="Lucas" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/lucasmi.jpg" alt="Lucas" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Lucas
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/murilo-coelho10" target="_blank">
-        <img src="https://github.com/user-attachments/assets/6e1e3b53-f908-4431-b664-7dc923a1f6a9" alt="Murilo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="imgsreadme/coelho.jpg" alt="Murilo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Murilo
