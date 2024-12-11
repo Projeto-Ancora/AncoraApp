@@ -5,6 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -13,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,6 +27,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.ancora.R
+import com.example.ancora.Telas.ComponentesPersonalizados.TopBarPerson
+import com.example.ancora.Telas.ComponentesPersonalizados.BarraLateral
+import com.example.ancora.ui.theme.Fontebaloo
 
 @Composable
 fun BackgroundFase() {
@@ -59,6 +69,18 @@ fun Trials(navController: NavController) {
         )
     }
 
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .fillMaxHeight()) {
+        Text(
+            "1",
+            fontSize = 40.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Bold,
+            style = TextStyle(fontFamily = Fontebaloo),
+            modifier = Modifier.align(Alignment.TopCenter).padding(start = 23.dp ,top = 185.dp)
+        )
+    }
 
         Box(modifier = Modifier
             .fillMaxWidth().fillMaxHeight()) {
@@ -90,44 +112,59 @@ fun Trials(navController: NavController) {
                     .clickable {
                         navController.navigate("fase2")
                     }
-
-            )
-        }
     Box(modifier = Modifier
-        .fillMaxWidth().fillMaxHeight()) {
+        .fillMaxWidth()
+        .fillMaxHeight()) {
+        Text(
+            "2",
+            fontSize = 40.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Bold,
+            style = TextStyle(fontFamily = Fontebaloo),
+            modifier = Modifier.align(Alignment.Center).padding(bottom = 180.dp, end = 75.dp)
+
+        )
+    }
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .fillMaxHeight()) {
         Text(
             "3",
             fontSize = 40.sp,
             color = Color.Black,
             fontWeight = FontWeight.Bold,
+            style = TextStyle(fontFamily = Fontebaloo),
             modifier = Modifier.align(Alignment.Center).padding(start = 100.dp, top = 10.dp)
 
         )
     }
     Box(modifier = Modifier
-        .fillMaxWidth().fillMaxHeight()) {
+        .fillMaxWidth()
+        .fillMaxHeight()) {
         Text(
             "4",
             fontSize = 40.sp,
             color = Color.Black,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.align(Alignment.Center).padding(start = 1.dp, top = 154.dp)
-
-        )
+            style = TextStyle(fontFamily = Fontebaloo),
+            modifier = Modifier.align(Alignment.Center).padding(start = 0.3.dp, top = 170.dp))
     }
     Box(modifier = Modifier
-        .fillMaxWidth().fillMaxHeight()) {
+        .fillMaxWidth()
+        .fillMaxHeight()) {
         Text(
             "5",
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
-            modifier = Modifier.align(Alignment.BottomEnd).padding(end = 65.dp ,bottom = 200.dp)
+            style = TextStyle(fontFamily = Fontebaloo),
+            modifier = Modifier.align(Alignment.BottomEnd).padding(end = 70.dp ,bottom = 200.dp)
 
         )
     }
     Box(modifier = Modifier
-        .fillMaxWidth().fillMaxHeight().padding(bottom = 100.dp), contentAlignment = Alignment.BottomCenter) {
+        .fillMaxWidth()
+        .fillMaxHeight().padding(bottom = 100.dp), contentAlignment = Alignment.BottomCenter) {
         Image(
             painterResource(R.drawable.xmapa),
             contentDescription = "X do mapa",
@@ -137,13 +174,11 @@ fun Trials(navController: NavController) {
 
 }
 
-
 @Composable
 fun Fase(navController: NavController) {
     BackgroundFase()
     Trials(navController)
 }
-
 
 @Composable
 @Preview

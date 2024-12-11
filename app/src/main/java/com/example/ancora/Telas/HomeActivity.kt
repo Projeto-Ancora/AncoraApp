@@ -3,8 +3,10 @@ package com.example.ancora.Telas
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -18,6 +20,7 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -61,13 +64,13 @@ fun MainContent(innerPadding: PaddingValues, navController: NavController, modif
         ) {
             Header()
             Spacer(modifier = Modifier.height(15.dp))
-            HomeButtons(navController = navController!!)
+            HomeButtons(navController = navController)
         }
         Menu(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(0.dp)
-                .offset(y = (-30).dp)
+                .offset(y = (-30).dp), navController = navController
         )
     }
 }
@@ -77,7 +80,7 @@ fun Header() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp)
+            .height(160.dp)
             .background(color = Color(0x802DA2DB)),
         contentAlignment = Alignment.Center
     ) {
@@ -88,8 +91,12 @@ fun Header() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.Center
+            ) {
                 BoasVindas()
+                Spacer(modifier = Modifier.height(5.dp))
                 VisualizadorDeMoedas()
             }
             Perfil()
@@ -103,6 +110,7 @@ fun Perfil(modifier: Modifier = Modifier) {
         painter = painterResource(id = R.drawable.perfil),
         contentDescription = "perfil",
         modifier = modifier
+            .padding(top = 50.dp)
             .size(56.dp)
             .clip(RoundedCornerShape(50.dp))
     )
@@ -116,47 +124,54 @@ fun BoasVindas(modifier: Modifier = Modifier) {
         textAlign = TextAlign.Start,
         style = TextStyle(
             fontFamily = Fontebaloo,
-            fontSize = 21.sp
+            fontSize = 23.sp
         ),
         modifier = modifier
-            .padding(start = 15.dp)
-            .offset(y = (-6).dp)
+            .padding(start = 12.dp, top = 66.dp)
     )
 }
 
 @Composable
 fun VisualizadorDeMoedas(modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier
-            .padding(start = 15.dp)
-            .height(50.dp),
-        verticalAlignment = Alignment.CenterVertically
+    val scaleFactor = 1.3f
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(), contentAlignment = Alignment.BottomStart
     ) {
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(22.dp))
-                .background(Color(0xfff8dd12))
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-            Text(
-                text = "200",
-                color = Color.Black,
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontFamily = Fontebaloo
+        Box(modifier = Modifier.padding(start = (10 * scaleFactor).dp, bottom = (10 * scaleFactor).dp)) {
+            Card(
+                modifier = Modifier
+                    .width((60 * scaleFactor).dp)
+                    .height((25 * scaleFactor).dp)
+                    .padding(),
+                border = BorderStroke((5 * scaleFactor).dp, Color.Yellow),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
                 )
-            )
+            ) {}
+
+            Row(
+                horizontalArrangement = Arrangement.Center,
+            ) {
+                Image(
+                    painterResource(R.drawable.dinheiro),
+                    contentDescription = "Moedas coletadas",
+                    modifier = Modifier.size((24 * scaleFactor).dp)
+                )
+                Text(
+                    "200",
+                    fontSize = (15 * scaleFactor).sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = Fontebaloo,
+                    modifier = Modifier.padding(start = (3 * scaleFactor).dp, top = (2 * scaleFactor).dp)
+                )
+            }
         }
-        Image(
-            painter = painterResource(id = R.drawable.moedas),
-            contentDescription = "moedas",
-            modifier = Modifier
-                .size(50.dp)
-                .clip(RoundedCornerShape(15.dp))
-        )
     }
 }
-
 @Composable
 fun HomeButtons(navController: NavController, modifier: Modifier = Modifier) {
     Column(
@@ -228,46 +243,7 @@ fun ButtonComponent(text: String, icon: Int, onClick: () -> Unit) {
             ),
             modifier = Modifier
                 .align(Alignment.Center)
-        )
-
-        Image(
-            painter = painterResource(id = icon),
-            contentDescription = null,
-            modifier = Modifier
-                .size(143.dp)
-                .align(Alignment.TopStart)
-        )
-    }
-}
-@Composable
-fun ButtonComponent(text: String, icon: Int) {
-    Box(
-        modifier = Modifier
-            .size(306.dp, 143.dp)
-    ) {
-        Button(
-            onClick = { },
-            shape = RoundedCornerShape(75.8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xffff9a05)),
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .offset(x = 30.dp, y = 31.dp)
-                .size(276.dp, 78.dp)
-        ) { }
-
-        Text(
-            text = text,
-            color = Color.White,
-            style = TextStyle(
-                fontFamily = Fontebaloo,
-                fontSize = 35.sp,
-                shadow = Shadow(
-                    color = Color.Black.copy(alpha = 0.25f),
-                    offset = Offset(3.68f, 2.21f)
-                )
-            ),
-            modifier = Modifier
-                .align(Alignment.Center)
+                .padding(start = 89.dp)
         )
 
         Image(
@@ -281,8 +257,9 @@ fun ButtonComponent(text: String, icon: Int) {
 }
 
 
+
 @Composable
-fun Menu(modifier: Modifier = Modifier) {
+fun Menu(modifier: Modifier = Modifier, navController: NavController) {
     Box(
         modifier = modifier
             .requiredWidth(width = 60.dp)
@@ -301,12 +278,15 @@ fun Menu(modifier: Modifier = Modifier) {
                 .requiredHeight(height = 44.dp))
         Image(
             painter = painterResource(id = R.drawable.iconeconfig),
-            contentDescription = "configurações",
+            contentDescription = "Configurações",
             modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(x = 12.24267578125.dp,
-                    y = 116.30572509765625.dp)
-                .requiredSize(size = 42.dp))
+                .align(Alignment.TopStart)
+                .offset(x = 12.24.dp, y = 116.31.dp)
+                .requiredSize(42.dp)
+                .clickable {
+                    navController.navigate("config")
+                }
+        )
         Image(
             painter = painterResource(id = R.drawable.iconepet),
             contentDescription = "pets",

@@ -3,6 +3,8 @@ package com.example.ancora.Telas.ComponentesPersonalizados
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,10 +29,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ancora.R
+import com.example.ancora.ui.theme.Fontebaloo
 
 
 @Composable
-fun TopBarPerson() {
+fun TopBarPerson(navController: NavController = rememberNavController()) {
 
     Box(
         modifier = Modifier
@@ -58,13 +61,14 @@ fun TopBarPerson() {
                             contentDescription = "seta de voltar",
                             modifier = Modifier
                                 .size(30.dp)
-                                .clickable { }
+                                .clickable {navController.popBackStack()}
                         )
                         Text(
                             "Menu de Fases",
                             fontSize = 25.sp,
                             modifier = Modifier.padding(start = 10.dp, top = 2.dp),
                             fontWeight = FontWeight.Bold,
+                            fontFamily = Fontebaloo,
                             color = Color.White
                         )
 
@@ -96,24 +100,24 @@ fun TopBarPerson() {
 
 @Composable
 fun MoneyFase() {
+    val scaleFactor = 1.3f
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(), contentAlignment = Alignment.BottomStart
     ) {
-        Box(modifier = Modifier.padding(start = 30.dp, bottom = 10.dp)) {
+        Box(modifier = Modifier.padding(start = (30 * scaleFactor).dp, bottom = (10 * scaleFactor).dp)) {
             Card(
                 modifier = Modifier
-                    .width(60.dp)
-                    .height(25.dp)
+                    .width((60 * scaleFactor).dp)
+                    .height((25 * scaleFactor).dp)
                     .padding(),
-                border = BorderStroke(5.dp, Color.Yellow),
+                border = BorderStroke((5 * scaleFactor).dp, Color.Yellow),
                 colors = CardDefaults.cardColors(
                     containerColor = Color.White
-
                 )
             ) {
-
 
             }
             Row(
@@ -122,20 +126,20 @@ fun MoneyFase() {
                 Image(
                     painterResource(R.drawable.dinheiro),
                     contentDescription = "Moedas coletadas",
-                    modifier = Modifier.size(22.dp)
+                    modifier = Modifier.size((24 * scaleFactor).dp)
                 )
                 Text(
                     "200",
-                    fontSize = 15.sp,
+                    fontSize = (15 * scaleFactor).sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(start = 3.dp, top = 3.dp)
+                    fontFamily = Fontebaloo,
+                    modifier = Modifier.padding(start = (3 * scaleFactor).dp, top = (2 * scaleFactor).dp)
                 )
             }
         }
     }
 }
-
 @Composable
 @Preview
 fun TopBarPersonPreview() {

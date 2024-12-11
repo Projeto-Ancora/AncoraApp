@@ -77,8 +77,13 @@ fun AppNavigator(modifier: Modifier = Modifier, navController: androidx.navigati
             Perfil(navController = navController)
         }
         composable("config") {
-            ConfiguracaoScreen(modifier = modifier, navController = navController
-            )
+            ConfiguracaoScreen(modifier = modifier, navController = navController)
+        }
+        composable("fasee") {
+            Fase(navController = navController)
+        }
+        composable("menuu") {
+            MainContent(modifier = modifier, innerPadding = PaddingValues(), navController = navController)
         }
         composable(route = "fase1"){
             GameScreen(modifier = modifier, navController = navController)

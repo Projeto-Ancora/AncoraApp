@@ -33,7 +33,7 @@ fun TelaDeCadastroLogin(navController: NavController, modifier: Modifier = Modif
             contentScale = ContentScale.Crop
         )
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = R.drawable.logogrande),
             contentDescription = "Logo",
             modifier = Modifier
                 .align(Alignment.TopCenter)

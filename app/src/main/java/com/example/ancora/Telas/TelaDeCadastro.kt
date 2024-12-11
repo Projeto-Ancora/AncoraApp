@@ -28,19 +28,18 @@ import com.example.ancora.ui.theme.Fontebaloo
 fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .fillMaxSize() // Preenche toda a tela
+            .fillMaxSize()
     ) {
         Image(
             painter = painterResource(id = R.drawable.telacadastro),
             contentDescription = "a Minha Primeira Vez...",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxSize() // Preenche toda a área disponível
+                .fillMaxSize()
         )
 
-        // Logo na posição correta
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = R.drawable.logogrande),
             contentDescription = "logo",
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -49,15 +48,13 @@ fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) 
                 .requiredHeight(195.dp)
         )
 
-        // Texto de título e campos de entrada mais para baixo
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp) // Adiciona padding para as bordas
-                .align(Alignment.Center) // Centraliza a coluna
-                .padding(top = 260.dp) // Desloca os campos mais para baixo
+                .padding(horizontal = 24.dp)
+                .align(Alignment.Center)
+                .padding(top = 260.dp)
         ) {
-            // Título "Login"
             Text(
                 text = "Cadastro",
                 style = TextStyle(
@@ -71,7 +68,6 @@ fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) 
                     .padding(bottom = 16.dp)
             )
 
-            // E-mail
             TextField(
                 value = "",
                 onValueChange = {},
@@ -114,7 +110,6 @@ fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) 
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Senha
             TextField(
                 value = "",
                 onValueChange = {},
@@ -137,7 +132,6 @@ fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) 
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Telefone
             TextField(
                 value = "",
                 onValueChange = {},
@@ -159,7 +153,6 @@ fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) 
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Termos e Condições
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(horizontal = 16.dp)
@@ -196,4 +189,3 @@ fun CadastroScreen(navController: NavController, modifier: Modifier = Modifier) 
         }
     }
 }
-

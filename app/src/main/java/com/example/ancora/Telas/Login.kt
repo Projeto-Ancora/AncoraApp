@@ -46,7 +46,7 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Top
         ) {
             Image(
-                painter = painterResource(id = R.drawable.logo),
+                painter = painterResource(id = R.drawable.logogrande),
                 contentDescription = "Logo",
                 modifier = Modifier
                     .size(width = 270.dp, height = 240.dp)
