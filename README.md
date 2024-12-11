@@ -154,19 +154,16 @@ Nessa seção, as crianças podem gastar as moedas acumuladas para adquirir pets
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/gustavo-correia-572g48s/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/2112d4cb-e3dc-485d-a8c8-257e863f8c9b"
- alt="correia" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://github.com/user-attachments/assets/2112d4cb-e3dc-485d-a8c8-257e863f8c9b" alt="luccas" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
       </a>
       <br>
       Gustavo - Back End/Financeiro
        <td align="center">
       <a href="https://www.linkedin.com/in/gustavo-correia-572g48s/" target="_blank">
-        <img src="https://github.com/user-attachments/assets/93867ed2-9bba-4907-aed4-a2b5f4563e6f"
- alt="correia" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://github.com/user-attachments/assets/93867ed2-9bba-4907-aed4-a2b5f4563e6f" alt="correia" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
     </td>
   </tr>
 </table>
-
 
 ---
 ## **Contribuidores do projeto**
