@@ -90,7 +90,7 @@ Nessa seção, as crianças podem gastar as moedas acumuladas para adquirir pets
 <table align="center">
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/640a37f3-b739-4a65-a9dd-938f9f4ffe34" alt="figma" width="100" height="100" style="border-radius:50%;"><br>
+      <img src="imgsreadme/figma.png" alt="figma" width="100" height="100" style="border-radius:50%;"><br>
       Figma
     </td>
     <td align="center">
