@@ -78,6 +78,12 @@ fun AppNavigator(modifier: Modifier = Modifier, navController: androidx.navigati
         composable("config") {
             ConfiguracaoScreen(modifier = modifier, navController = navController)
         }
+        composable("fasee") {
+            Fase(navController = navController)
+        }
+        composable("menuu") {
+            MainContent(modifier = modifier, innerPadding = PaddingValues(), navController = navController)
+        }
     }
 }
 
