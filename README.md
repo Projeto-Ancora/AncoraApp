@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/5e241c0c-e21a-476c-9178-c354dac6cd63" alt="Logo Âncora" width="350" height="300" />
+  <img src="imgsreadme/ancoralogo.png" alt="Logo Âncora" width="350" height="300" />
 </div>
 
 
@@ -34,7 +34,7 @@ Assim como uma âncora é responsável por manter um barco firme e seguro em alt
 
 <br />
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/5e241c0c-e21a-476c-9178-c354dac6cd63" alt="Logo Âncora" width="170" height="150" />
+  <img src="imgsreadme/ancoralogo.png" alt="Logo Âncora" width="170" height="150" />
 </div>
 
 ---
