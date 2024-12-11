@@ -15,9 +15,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ancora.Telas.*
+import com.example.ancora.Telas.Game.GameScreen
+import com.example.ancora.Telas.Game.GameScreen2
+import com.example.ancora.Telas.TenteNovamente.TryAgainScreen
 import com.example.ancora.ui.theme.AncoraTheme
-import com.example.escolherpersonagem.BotaoMarinheiroFeminino
-import com.example.escolherpersonagem.BotaoMarinheiroMasculino
 import com.example.teladeconfiguracao.ConfiguracaoScreen
 
 class MainActivity : ComponentActivity() {
@@ -83,6 +84,15 @@ fun AppNavigator(modifier: Modifier = Modifier, navController: androidx.navigati
         }
         composable("menuu") {
             MainContent(modifier = modifier, innerPadding = PaddingValues(), navController = navController)
+        }
+        composable(route = "fase1"){
+            GameScreen(modifier = modifier, navController = navController)
+        }
+        composable("fase2"){
+            GameScreen2(modifier, navController)
+        }
+        composable("tenteNovamente") {
+            TryAgainScreen(modifier = modifier, navController)
         }
     }
 }

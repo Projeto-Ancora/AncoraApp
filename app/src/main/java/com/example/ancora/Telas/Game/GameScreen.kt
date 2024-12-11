@@ -35,6 +35,7 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ancora.R
 
 data class Bolha(
@@ -54,7 +55,7 @@ data class BolhaPeixe(
 )
 
 @Composable
-fun GameScreen(modifier: Modifier = Modifier) {
+fun GameScreen(modifier: Modifier = Modifier, navController: NavController) {
 
     val bolhaList = remember {
         mutableListOf(
@@ -79,6 +80,8 @@ fun GameScreen(modifier: Modifier = Modifier) {
         peixeList.getOrNull(index)?.let { BolhaPeixe(bolha, it) }
     }
 
+    var verificarErradas by remember { mutableStateOf(false) }
+
     //Coluna para renderizar os peixes e as bolhas
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -87,7 +90,7 @@ fun GameScreen(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .paint(
                 painterResource(R.drawable.backgroundfishgame),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.None
             )
     ) {
         Row(
@@ -117,6 +120,13 @@ fun GameScreen(modifier: Modifier = Modifier) {
                             if (bolhaSelecionada != null) {
                                 verificarAcerto(bolhaSelecionada!!, pair.peixe) { acerto ->
                                     bolhaResultado = mapOf(bolhaSelecionada!!.id to acerto) // O operador !! afirma que a bolhaSelecionada nunca vai ser nula nesse contexto
+                                    val todasTentativas = bolhaList.associate { it.id to (bolhaResultado[it.id]?: false)}
+
+                                    verificarErradas = todasTentativas.all{!it.value}
+
+                                    if(verificarErradas) {
+                                        navController.navigate("tenteNovamente")
+                                    }
                                 };
                             } else {
                                 bolhaResultado = bolhaList.associate { it.id to false } // Cria um map, apartir de uma coleção, onde definem como as palavras chave e os valores devem ser gerados
@@ -232,8 +242,10 @@ fun CertoOuErrado(
     };
 };
 
+/*
 @Preview
 @Composable
 fun GameScreenPreview() {
     GameScreen();
 }
+*/
