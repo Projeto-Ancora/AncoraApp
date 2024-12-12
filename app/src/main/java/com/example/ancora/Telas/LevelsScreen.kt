@@ -1,27 +1,37 @@
 package com.example.ancora.Telas
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,6 +41,107 @@ import com.example.ancora.R
 import com.example.ancora.Telas.ComponentesPersonalizados.TopBarPerson
 import com.example.ancora.Telas.ComponentesPersonalizados.BarraLateral
 import com.example.ancora.ui.theme.Fontebaloo
+
+
+@Composable
+fun Headerr() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(160.dp)
+            .background(color = Color(0x802DA2DB)),
+        contentAlignment = Alignment.Center
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 15.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Spacer(modifier = Modifier.height(5.dp))
+                CoinView()
+            }
+            Perfilz()
+        }
+    }
+}
+
+@Composable
+fun Perfilz(modifier: Modifier = Modifier) {
+    Image(
+        painter = painterResource(id = R.drawable.perfil),
+        contentDescription = "perfil",
+        modifier = modifier
+            .padding(top = 50.dp)
+            .size(56.dp)
+            .clip(RoundedCornerShape(50.dp))
+    )
+}
+
+@Composable
+fun MenuFases(modifier: Modifier = Modifier) {
+    Text(
+        text = "Menu de Fases!",
+        color = Color.White,
+        textAlign = TextAlign.Start,
+        style = TextStyle(
+            fontFamily = Fontebaloo,
+            fontSize = 23.sp
+        ),
+        modifier = modifier
+            .padding(start = 20.dp, top = 66.dp)
+    )
+}
+
+@Composable
+fun CoinView(modifier: Modifier = Modifier) {
+    val scaleFactor = 1.3f
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(), contentAlignment = Alignment.BottomStart
+    ) {
+        Box(modifier = Modifier.padding(start = (10 * scaleFactor).dp, bottom = (10 * scaleFactor).dp)) {
+            Card(
+                modifier = Modifier
+                    .width((60 * scaleFactor).dp)
+                    .height((25 * scaleFactor).dp)
+                    .padding(),
+                border = BorderStroke((5 * scaleFactor).dp, Color.Yellow),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
+                )
+            ) {}
+
+            Row(
+                horizontalArrangement = Arrangement.Center,
+            ) {
+                Image(
+                    painterResource(R.drawable.dinheiro),
+                    contentDescription = "Moedas coletadas",
+                    modifier = Modifier.size((24 * scaleFactor).dp)
+                )
+                Text(
+                    "200",
+                    fontSize = (15 * scaleFactor).sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = Fontebaloo,
+                    modifier = Modifier.padding(start = (3 * scaleFactor).dp, top = (2 * scaleFactor).dp)
+                )
+            }
+        }
+    }
+}
+
+
+
 
 @Composable
 fun BackgroundFase() {
@@ -172,6 +283,8 @@ fun Trials(navController: NavController) {
 @Composable
 fun Fase(navController: NavController) {
     BackgroundFase()
+    Headerr()
+    MenuFases()
     Trials(navController)
 }
 

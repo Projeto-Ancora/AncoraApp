@@ -71,7 +71,7 @@ fun ConfiguracaoScreen(modifier: Modifier = Modifier, navController: NavControll
             }
 
             Button(
-                onClick = { /* TODO: Implementar Ajuda e Suporte */ },
+                onClick = { navController.navigate("ajudaesup") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFA500)),
                 modifier = Modifier
                     .height(60.dp)
@@ -83,7 +83,7 @@ fun ConfiguracaoScreen(modifier: Modifier = Modifier, navController: NavControll
             Spacer(modifier = Modifier.height(35.dp))
 
             Button(
-                onClick = { /* TODO: Implementar Sobre o Aplicativo */ },
+                onClick = { navController.navigate("sobreoapp") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFA500)),
                 modifier = Modifier
                     .height(60.dp)
@@ -95,7 +95,19 @@ fun ConfiguracaoScreen(modifier: Modifier = Modifier, navController: NavControll
             Spacer(modifier = Modifier.height(35.dp))
 
             Button(
-                onClick = { /* TODO: Implementar Trocar de Conta */ },
+                onClick = { navController.navigate("termos") },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFA500)),
+                modifier = Modifier
+                    .height(60.dp)
+                    .fillMaxWidth()
+            ) {
+                Text("Termos de Uso", color = Color.White, fontSize = 24.sp, fontFamily = Fontebaloo)
+            }
+
+            Spacer(modifier = Modifier.height(35.dp))
+
+            Button(
+                onClick = { navController.navigate("firstscreen") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFA500)),
                 modifier = Modifier
                     .height(60.dp)
@@ -107,7 +119,7 @@ fun ConfiguracaoScreen(modifier: Modifier = Modifier, navController: NavControll
             Spacer(modifier = Modifier.height(35.dp))
 
             Button(
-                onClick = { /* TODO: Implementar Sair da Conta */ },
+                onClick = { navController.navigate("firstscreen") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                 modifier = Modifier
                     .height(60.dp)

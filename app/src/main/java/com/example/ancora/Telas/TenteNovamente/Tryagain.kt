@@ -1,6 +1,7 @@
 package com.example.ancora.Telas.TenteNovamente
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,7 +56,6 @@ fun TryAgainScreen(modifier: Modifier = Modifier, navController: NavHostControll
                     .background(Color.White),
                 contentAlignment = Alignment.BottomCenter,
             ) {
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Bottom,
@@ -63,66 +63,44 @@ fun TryAgainScreen(modifier: Modifier = Modifier, navController: NavHostControll
                     Column(
                         verticalArrangement = Arrangement.spacedBy((-30).dp),
                         horizontalAlignment = Alignment.CenterHorizontally
-                    ){
+                    ) {
                         ElevatedButton(
-                            onClick = {navController.popBackStack()},
+                            onClick = { navController.popBackStack() },
                             modifier
                                 .size(height = 65.dp, width = 250.dp),
                             colors = ButtonDefaults.buttonColors(Color(0xffff9a05)),
                         ) {
                             Text(
-                                "Tente novamente",
+                                "Recomeçar",
                                 fontFamily = Fontebaloo,
-                                fontSize = 20.sp,
+                                fontSize = 30.7916316986084.sp,
                                 color = Color.White
                             )
                         }
 
                         ElevatedButton(
-                            onClick = {navController.navigate("menu")},
+                            onClick = { navController.navigate("menu") },
                             modifier
-                                .size(height = 65.dp, width = 150.dp),
+                                .size(height = 65.dp, width = 250.dp),
                             colors = ButtonDefaults.elevatedButtonColors(Color(0xffff9a05)),
                         ) {
                             Text(
-                                "Home",
+                                "Menu",
                                 color = Color.White,
-                                fontFamily = Fontebaloo,
-                                fontSize = 20.sp
-                            )
+                                fontSize = 30.7916316986084.sp,
+                                fontFamily = Fontebaloo)
                         }
                     }
                 }
             }
-            Box() {
-                BannerTryAgain();
-                Text(
-                    "Tente novamente",
-                    modifier
-                        .offset(
-                            x = (62).dp,
-                            y = (-40).dp
-                        ),
-                    fontSize = 20.sp,
-                    fontFamily = Fontebaloo,
-                    color = Color.White
-                )
-            }
-        };
-    };
-};
-
-@Composable
-fun BannerTryAgain() {
-    Canvas(
-        modifier = Modifier
-            .size(100.dp)
-    ) {
-        drawRoundRect(
-            color = Color(0xFF8265fe),
-            size = Size(height = 280f, width = 600f),
-            topLeft = Offset(x = 90f, -131f),
-            cornerRadius = CornerRadius(40f, 40f)
-        )
-    };
-};
+            Image(
+                painter = painterResource(id = R.drawable.tenteagain),
+                contentDescription = "Tente novamente",
+                modifier = Modifier
+                    .size(width = 300.dp, height = 100.dp)
+                    .align(Alignment.TopCenter)
+                    .offset(y = (-40).dp)
+            )
+        }
+    }
+}

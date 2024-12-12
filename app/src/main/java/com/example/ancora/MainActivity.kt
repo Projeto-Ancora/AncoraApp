@@ -97,6 +97,18 @@ fun AppNavigator(modifier: Modifier = Modifier, navController: androidx.navigati
         composable("tenteNovamente") {
             TryAgainScreen(modifier = modifier, navController)
         }
+        composable("sobreoapp") {
+            SobreOAplicativo(modifier = modifier, navController)
+        }
+        composable("ajudaesup") {
+            AjudaSuporteScreen(modifier = modifier, navController)
+        }
+        composable("firstscreen") {
+            TelaDeCadastroLogin(navController, modifier = modifier)
+        }
+        composable("termos") {
+            TermosDeUsoEPrivacidade( modifier = modifier, navController)
+        }
     }
 }
 
