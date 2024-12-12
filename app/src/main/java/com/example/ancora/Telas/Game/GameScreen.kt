@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -80,7 +82,25 @@ fun GameScreen(modifier: Modifier = Modifier, navController: NavController) {
         peixeList.getOrNull(index)?.let { BolhaPeixe(bolha, it) }
     }
 
-    var verificarErradas by remember { mutableStateOf(false) }
+    val bolhasTotais = remember { bolhaList.size };
+    var respostasCorretas by remember { mutableIntStateOf(0) }
+
+    fun verificarAcerto(
+        bolhaSelecionada: Bolha,
+        peixeSelecionado: Peixe,
+        onResult: (Boolean) -> Unit
+    ) {
+        val acerto = peixeSelecionado.valor == bolhaSelecionada.valorCorreto
+        if(peixeSelecionado.valor == bolhaSelecionada.valorCorreto){
+            onResult(acerto);
+            respostasCorretas++
+            if (respostasCorretas == bolhasTotais){
+                navController.navigate("parabens")
+            }
+        } else{
+            navController.navigate("tenteNovamente")
+        };
+    }; //Função que compara 2 valores que retorna um valor booleano para "bolhaResultado"
 
     //Coluna para renderizar os peixes e as bolhas
     Column(
@@ -120,14 +140,7 @@ fun GameScreen(modifier: Modifier = Modifier, navController: NavController) {
                             if (bolhaSelecionada != null) {
                                 verificarAcerto(bolhaSelecionada!!, pair.peixe) { acerto ->
                                     bolhaResultado = mapOf(bolhaSelecionada!!.id to acerto) // O operador !! afirma que a bolhaSelecionada nunca vai ser nula nesse contexto
-                                    val todasTentativas = bolhaList.associate { it.id to (bolhaResultado[it.id]?: false)}
-
-                                    verificarErradas = todasTentativas.all{!it.value}
-
-                                    if(verificarErradas) {
-                                        navController.navigate("tenteNovamente")
-                                    }
-                                };
+                                }
                             } else {
                                 bolhaResultado = bolhaList.associate { it.id to false } // Cria um map, apartir de uma coleção, onde definem como as palavras chave e os valores devem ser gerados
                             }
@@ -144,7 +157,8 @@ fun GameScreen(modifier: Modifier = Modifier, navController: NavController) {
 fun BolhaItem(
     bolha: Bolha,
     acerto: Boolean?,
-    onclick: () -> Unit) {
+    onclick: () -> Unit
+) {
 
     val corBolha1 = colorResource(R.color.corbolha1);
     val corBolha2 = colorResource(R.color.corbolha2);
@@ -191,7 +205,8 @@ fun BolhaItem(
 @Composable
 fun PeixeItem(
     peixe: Peixe,
-    onclick: () -> Unit) {
+    onclick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .size(130.dp)
@@ -212,18 +227,11 @@ fun PeixeItem(
     };
 };
 
-private fun verificarAcerto(
-    bolhaSelecionada: Bolha,
-    peixeSelecionado: Peixe,
-    onResult: (Boolean) -> Unit
-) {
-    onResult(peixeSelecionado.valor == bolhaSelecionada.valorCorreto);
-}; //Função que compara 2 valores que retorna um valor booleano para "bolhaResultado"
-
 @Composable
 fun CertoOuErrado(
     acerto: Boolean,
-    resultado: Int) {
+    resultado: Int
+) {
     if (resultado != 0) {
         when {
             acerto -> {
@@ -241,11 +249,3 @@ fun CertoOuErrado(
         };
     };
 };
-
-/*
-@Preview
-@Composable
-fun GameScreenPreview() {
-    GameScreen();
-}
-*/

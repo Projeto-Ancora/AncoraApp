@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -69,19 +70,6 @@ fun Trials(navController: NavController) {
         )
     }
 
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()) {
-        Text(
-            "1",
-            fontSize = 40.sp,
-            color = Color.Black,
-            fontWeight = FontWeight.Bold,
-            style = TextStyle(fontFamily = Fontebaloo),
-            modifier = Modifier.align(Alignment.TopCenter).padding(start = 23.dp ,top = 185.dp)
-        )
-    }
-
         Box(modifier = Modifier
             .fillMaxWidth().fillMaxHeight()) {
             Text(
@@ -95,12 +83,18 @@ fun Trials(navController: NavController) {
                     .clickable {
                         navController.navigate("fase1")
                     }
+                    .offset(
+                        y = (12).dp
+                    ),
+                fontFamily = Fontebaloo
             )
         }
 
 
         Box(modifier = Modifier
-            .fillMaxWidth().fillMaxHeight()) {
+            .fillMaxWidth()
+            .fillMaxHeight())
+        {
             Text(
                 "2",
                 fontSize = 40.sp,
@@ -112,19 +106,14 @@ fun Trials(navController: NavController) {
                     .clickable {
                         navController.navigate("fase2")
                     }
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()) {
-        Text(
-            "2",
-            fontSize = 40.sp,
-            color = Color.Black,
-            fontWeight = FontWeight.Bold,
-            style = TextStyle(fontFamily = Fontebaloo),
-            modifier = Modifier.align(Alignment.Center).padding(bottom = 180.dp, end = 75.dp)
+                    .offset(
+                        x = (-7).dp,
+                        y = (-12).dp
+                    ),
+                fontFamily = Fontebaloo
+            )
+        }
 
-        )
-    }
     Box(modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight()) {
@@ -158,7 +147,13 @@ fun Trials(navController: NavController) {
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             style = TextStyle(fontFamily = Fontebaloo),
-            modifier = Modifier.align(Alignment.BottomEnd).padding(end = 70.dp ,bottom = 200.dp)
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 70.dp ,bottom = 200.dp)
+                .offset(
+                    x = (-8).dp,
+                    y = (-15).dp
+                )
 
         )
     }
