@@ -91,6 +91,9 @@ fun AppNavigator(modifier: Modifier = Modifier, navController: androidx.navigati
         composable("fase2"){
             GameScreen2(modifier, navController)
         }
+        composable("parabens") {
+            Congratulations(modifier, navController)
+        }
         composable("tenteNovamente") {
             TryAgainScreen(modifier = modifier, navController)
         }

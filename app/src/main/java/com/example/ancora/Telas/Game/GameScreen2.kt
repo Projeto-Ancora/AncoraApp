@@ -49,139 +49,147 @@ fun GameScreen2(modifier: Modifier = Modifier, navController: NavController) {
 
     var isGameStarted by remember { mutableStateOf(false) }
 
-        isGameStarted = true;
-        val imageMapping = mapOf(
-            Item_dc(1, TypeItem_dc.NECESSITY) to R.drawable.shirt,
-            Item_dc(2, TypeItem_dc.NECESSITY) to R.drawable.arrozefeijao,
-            Item_dc(1, TypeItem_dc.DESIRE) to R.drawable.urso500,
-            Item_dc(2, TypeItem_dc.DESIRE) to R.drawable.lollipop500
-        )
+    isGameStarted = true;
+    val imageMapping = mapOf(
+        Item_dc(1, TypeItem_dc.NECESSITY) to R.drawable.shirt,
+        Item_dc(2, TypeItem_dc.NECESSITY) to R.drawable.arrozefeijao,
+        Item_dc(1, TypeItem_dc.DESIRE) to R.drawable.urso500,
+        Item_dc(2, TypeItem_dc.DESIRE) to R.drawable.lollipop500
+    )
 
-        val itemList = remember { mutableStateOf(imageMapping.keys.shuffled().toMutableList()) }
+    val itemList = remember { mutableStateOf(imageMapping.keys.shuffled().toMutableList()) }
 
-        val currentItem = remember {
-            mutableStateOf(imageMapping.keys.random())
+    val currentItem = remember {
+        mutableStateOf(imageMapping.keys.random())
+    }
+
+    var chestNumber by remember {
+        mutableIntStateOf(0)
+    }
+    val img = chestClick(chestNumber)
+
+    fun getNextItem() {
+        itemList.value.remove(currentItem.value)
+        if (itemList.value.isEmpty()) {
+            itemList.value = imageMapping.keys.shuffled().toMutableList()
         }
+        currentItem.value = itemList.value.first()
+    }
 
-        var chestNumber by remember {
-            mutableIntStateOf(0)
-        }
-        val img = chestClick(chestNumber)
-
-        fun getNextItem() {
-            itemList.value.remove(currentItem.value)
-            if (itemList.value.isEmpty()) {
-                itemList.value = imageMapping.keys.shuffled().toMutableList()
-            }
-            currentItem.value = itemList.value.first()
-        }
-
-        Column(
+    Column(
+        modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(R.drawable.backgroundnecessity),
+                contentScale = ContentScale.None
+            ),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    )
+    {
+        Row(
             modifier
-                .fillMaxSize()
-                .paint(
-                    painterResource(R.drawable.backgroundnecessity),
-                    contentScale = ContentScale.None
-                ),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        )
-        {
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(top = 130.dp),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Button(
-                    onClick = {
-                        if (!isGameStarted) isGameStarted = true
-                        verificarAcerto2(currentItem, TypeItem_dc.NECESSITY) { sum ->
-                            when {
-                                currentItem.value.type == TypeItem_dc.NECESSITY -> {
-                                    chestNumber += sum
-                                }
-
-                                else -> chestNumber - +sum
+                .fillMaxWidth()
+                .padding(top = 130.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(
+                onClick = {
+                    if (!isGameStarted) isGameStarted = true
+                    verificarAcerto2(currentItem, TypeItem_dc.NECESSITY) { sum ->
+                        when {
+                            currentItem.value.type == TypeItem_dc.NECESSITY -> {
+                                chestNumber += sum
                             }
+
+                            else -> chestNumber -= sum
                         }
-                        getNextItem();
-                        checkChestState(navController, chestNumber);
-                    },
-                    modifier
-                        .width(150.dp)
-                        .height(150.dp),
-                    shape = RoundedCornerShape(10.dp),
-                    contentPadding = PaddingValues(0.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0XFFFF9A05)
-                    ),
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.necessity),
-                        contentDescription = "necessity",
-                        modifier.size(346.dp)
-                    )
-                }
-
-                Spacer(modifier.size(40.dp))
-
-                Button(
-                    onClick = {
-                        if(!isGameStarted) isGameStarted = true
-
-                        verificarAcerto2(currentItem, TypeItem_dc.DESIRE) { sum ->
-                            when {
-                                currentItem.value.type == TypeItem_dc.DESIRE -> {
-                                    chestNumber += sum
-                                }
-                                else -> chestNumber - +sum
-                            }
-                        };
-                        getNextItem();
-                        checkChestState(navController, chestNumber);
-                    },
-                    modifier
-                        .width(150.dp)
-                        .height(150.dp),
-                    shape = RoundedCornerShape(10.dp),
-                    contentPadding = PaddingValues(0.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0XFFFF9A05)
-                    )
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.desire),
-                        contentDescription = "desire",
-                        modifier.size(346.dp)
-                    )
-                };
-            };
-
-            currentItem.value.let { item ->
-                val imgRes = imageMapping[item]
-                    ?: R.drawable.urso500 // if(imageMapping != null) imageMapping[item] else R.drawable.urso500
+                    }
+                    getNextItem();
+                    checkChestState(navController, chestNumber);
+                },
+                modifier
+                    .width(150.dp)
+                    .height(150.dp),
+                shape = RoundedCornerShape(10.dp),
+                contentPadding = PaddingValues(0.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0XFFFF9A05)
+                ),
+            ) {
                 Image(
-                    painter = painterResource(imgRes),
-                    contentDescription = "currentImage"
+                    painter = painterResource(R.drawable.necessity),
+                    contentDescription = "necessity",
+                    modifier.size(346.dp)
+                )
+            }
+
+            Spacer(modifier.size(40.dp))
+
+            Button(
+                onClick = {
+                    if (!isGameStarted) isGameStarted = true
+
+                    verificarAcerto2(currentItem, TypeItem_dc.DESIRE) { sum ->
+                        when {
+                            currentItem.value.type == TypeItem_dc.DESIRE -> {
+                                chestNumber += sum
+                            }
+
+                            else -> chestNumber -= sum
+                        }
+                    };
+                    getNextItem();
+                    checkChestState(navController, chestNumber);
+                },
+                modifier
+                    .width(150.dp)
+                    .height(150.dp),
+                shape = RoundedCornerShape(10.dp),
+                contentPadding = PaddingValues(0.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0XFFFF9A05)
+                )
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.desire),
+                    contentDescription = "desire",
+                    modifier.size(346.dp)
                 )
             };
+        };
 
+        currentItem.value.let { item ->
+            val imgRes = imageMapping[item]
+                ?: R.drawable.urso500 // if(imageMapping != null) imageMapping[item] else R.drawable.urso500
             Image(
-                painter = painterResource(img),
-                contentDescription = "chest",
-                modifier
-                    .size(195.dp)
+                painter = painterResource(imgRes),
+                contentDescription = "currentImage"
             )
         };
-    };
 
-fun verificarAcerto2(currentItem: MutableState<Item_dc>, expectedType: TypeItem_dc, sum: (Int)-> Unit) {
+        Image(
+            painter = painterResource(img),
+            contentDescription = "chest",
+            modifier
+                .size(195.dp)
+        )
+    };
+};
+
+fun verificarAcerto2(
+    currentItem: MutableState<Item_dc>,
+    expectedType: TypeItem_dc,
+    sum: (Int) -> Unit
+) {
     if (currentItem.value.type == expectedType) {
         Log.d("acerto", "acerto");
         sum(1);
-    } else Log.d("erro", "erro");
+    } else {
+        Log.d("erro", "erro")
+        sum(1);
+    };
 }
 
 fun chestClick(num: Int): Int {
@@ -195,8 +203,9 @@ fun chestClick(num: Int): Int {
     return img
 }
 
-fun checkChestState(navController: NavController, chestState: Int){
-    when(chestState){
+fun checkChestState(navController: NavController, chestState: Int) {
+    when (chestState) {
         0 -> navController.navigate("tenteNovamente")
+        4 -> navController.navigate("parabens")
     }
 }
